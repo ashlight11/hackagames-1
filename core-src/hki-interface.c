@@ -12,6 +12,10 @@
 #include <stdlib.h>
 #include <math.h>
 #include <string.h>
+#include <stdbool.h>
+
+#include <pthread.h>
+#include <netinet/in.h> 
 
 #include "hackagames.h"
 #include "hackagames-interface.h"
@@ -291,5 +295,5 @@ void Interface_controlCamera(Interface * self)
     if (IsKeyDown(KEY_DOWN)) self->camera.y -= step;
 
     self->scale += (GetMouseWheelMove()*1.f);
-    self->scale = fmaxf( self->scale, 0.001f );
+    self->scale = max( self->scale, 0.001f );
 }

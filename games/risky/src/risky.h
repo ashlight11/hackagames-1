@@ -14,7 +14,7 @@
 
 #include "raylib.h"
 #include "hackagames.h"
-#include "hackagames_interface.h"
+#include "hackagames-interface.h"
 
 // Game attributes
 //-----------------

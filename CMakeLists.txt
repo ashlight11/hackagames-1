@@ -25,7 +25,7 @@ set(SRC_FILES
 )
 
 add_library(hackagames SHARED ${SRC_FILES})
-# add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
+add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
 
 # Draft ... :
 add_executable(draft core-src/main-draft.c core-src/hki-interface.c)
@@ -39,8 +39,8 @@ target_link_libraries(draft hackagames ${DPD_IHM_LIBS})
 ##target_link_libraries(navgraph toghap ${DPD_LIBS})
 
 # Risky-Game :
-#set(RISKY_SRCS
-#    src/hackagames_interface.c
-#    games/risky/src/risky.c)
-#add_executable(risky-easy games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
-#target_link_libraries(risky-easy hackagame ${DPD_IHM_LIBS})
+set(RISKY_SRCS
+    games/risky/src/risky.c)
+add_executable(risky-easy
+    games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
+target_link_libraries(risky-easy hackagames-interface ${DPD_IHM_LIBS})
