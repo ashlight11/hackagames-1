@@ -22,3 +22,63 @@ Several games are proposed with the API for the example:
 ## Licence
 
 **HackaGame** is distributed under the [MIT license](./LICENCE.md).
+
+## Installation (Linux)
+
+**HackaGame** work natively on Linux systems and commands is given regarding Ubuntu-like distribution.
+
+### Dependencies:
+
+C/C++ development tools, CMake, Test and [RayLib dependencies](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux).
+
+```bash
+sudo apt install -y \
+  build-essential git cmake \
+  libasound2-dev mesa-common-dev \
+  libx11-dev libxi-dev xorg-dev \
+  libgl1-mesa-dev libglu1-mesa-dev \
+```
+
+### **HackaGame**
+
+Clone then build the overall project.
+
+```bash
+git clone git@bitbucket.org:imt-mobisyst/hackagames.git
+cd **HackaGame**
+./bin/build.sh
+```
+
+## Getting started
+
+The easiest way is to enter in one of the example games as [risky](./games/risky).
+
+## In this repository
+
+Directories:
+
+- *bin* : stock the scripts for project management.
+- *.git* : git version management repository.
+- *dpd* : included dependencies (RayLib and potentionnaly in the future: Wanda / Igraph... )
+- *src* : source code of the core library of the project (C language).
+- *doc* : documentation du projet (to be generated).
+- *games* : game examples on the top of **HackaGame** API.
+
+Root Files:
+
+- *README.md* : Your servitor.
+- *LICENCE.md* : The Applied MIT license.
+- *CMakefile* : Instructions for `CMake` construction
+
+## Contribution guidelines
+
+* Writing tests
+* Code review
+* Other guidelines
+* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+
+### Contributors
+
+- Permanent contributor:
+  * **Guillaume LOZENGUEZ**
+- 1st version of Risky game: **Ewen MADEC** and **Timothy LAIRD** (April, 2021)
