@@ -1,0 +1,18 @@
+# Working files:
+.vscode
+*.o
+*.log
+
+# Directory:
+build
+raylib
+dpd
+__pycache__
+
+# Generated files:
+draft
+games/start-navgraph
+games/risky-easy
+hackagames.h
+libhackagame.so
+libhackagame.a
