@@ -22,7 +22,7 @@ float Float2_length2(Float2 self);
 float Float2_distance(Float2 self, Float2 another);
 float Float2_distance2(Float2 self, Float2 another);
 
-float Float2_normalize( Float2 *vect );
+float Float2_normalize(Float2 *self);
 
 void Float2_repultion(Float2 *self, Float2 *another, float dist);
 

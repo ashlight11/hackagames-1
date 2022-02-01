@@ -22,7 +22,6 @@ struct Str_Game {
     int port;
     struct sockaddr_in address;
 };
-
 typedef struct Str_Game Game;
 
 // Constructor / Destructor

@@ -13,7 +13,9 @@
 #include <math.h>
 #include <string.h>
 
-#include "hackagames_interface.h"
+
+#include "hackagames.h"
+#include "hackagames-interface.h"
 
 //-----------------------------------//
 //--   Constructor / Destructor    --//

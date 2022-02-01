@@ -5,7 +5,7 @@
 *
 ********************************************************************************************/
 
-#include "geometry.h"
+#include "hackagames-geometry.h"
 
 #include <stdio.h>
 #include <math.h>

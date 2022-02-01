@@ -13,6 +13,5 @@ __pycache__
 draft
 games/start-navgraph
 games/risky-easy
-hackagames.h
 libhackagame.so
 libhackagame.a

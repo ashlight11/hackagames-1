@@ -1,14 +1,13 @@
-# Todo List
+# BOARD of the project
 
-## Version v1.
-
-### Clean version:
-
-- Move to HackaGame projet name 
-- Generator of general hackagame.h
-- make hackagame core independant from raylib (Vector2 -> float2 in geometry)
-- script for game-exporting
+- Move to `HackaGame` with `hackagame-geometry`, `hackagame-tabletop` and `hackagame-server` as the 3 component of HackaGames API
+- Add test procedures
+- `hackagame-server` based on [mosquitto](https://mosquitto.org/)
+- Clean **RISKY** game as first example
+- Raylib basic player
 - jouer avec `screen` et voir la concurance.
+- Wraps python
+- Wrap Pharo
 
 ### Tabletop:
 

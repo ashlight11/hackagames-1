@@ -6,9 +6,7 @@
 ********************************************************************************************/
 
 #include "dependancy.h"
-#include "geometry.h"
-#include "organism.h"
-#include "game.h"
+#include "hackagames.h"
 
 #include <errno.h> 
 #include <unistd.h>     //close 
