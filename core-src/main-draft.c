@@ -8,7 +8,7 @@
 #include "raymath.h"
 
 #include "hackagames.h"
-#include "hackagames_interface.h"
+#include "hackagames-interface.h"
 
 #include <stdlib.h>
 #include <unistd.h>

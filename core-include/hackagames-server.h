@@ -4,6 +4,8 @@
 #ifndef HACKAGAMES_GAME_H
 #define HACKAGAMES_GAME_H
 
+#include <netinet/in.h> 
+
 enum GameStatus {
     GAME_END= 0,
     GAME_INITIALIZING,

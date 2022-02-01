@@ -4,8 +4,7 @@
 //-----------------------------------//
 //--          Interface            --//
 //-----------------------------------//
-
-#include "hackagames.h"
+#include <pthread.h>
 
 struct Str_Interface {
     Float2 camera, screenCenter;

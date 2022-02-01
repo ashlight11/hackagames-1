@@ -25,12 +25,10 @@ set(SRC_FILES
 )
 
 add_library(hackagames SHARED ${SRC_FILES})
-add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
-# add_library(toghap_static STATIC ${SRC_FILES})
-# target_link_libraries(toghap_static ${DPD_LIBS})
+# add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
 
 # Draft ... :
-add_executable(draft core-src/main-draft.c core-src/hk-interface.c)
+add_executable(draft core-src/main-draft.c core-src/hki-interface.c)
 target_link_libraries(draft hackagames ${DPD_IHM_LIBS})
 
 # Game NavGraph :
