@@ -29,7 +29,7 @@ Several games are proposed with the API for the example:
 
 ### Dependencies:
 
-C/C++ development tools, CMake, Test and [RayLib dependencies](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux).
+C/C++ development tools, CMake, Test, [RayLib dependencies](https://github.com/raysan5/raylib/wiki/Working-on-GNU-Linux) and ZeroMQ libs
 
 ```bash
 sudo apt install -y \
@@ -37,6 +37,7 @@ sudo apt install -y \
   libasound2-dev mesa-common-dev \
   libx11-dev libxi-dev xorg-dev \
   libgl1-mesa-dev libglu1-mesa-dev \
+  libzmq3-dev libczmq-dev
 ```
 
 ### **HackaGame**
