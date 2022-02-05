@@ -12,6 +12,9 @@ SET(CMAKE_C_FLAGS_RELEASE "-Wall")
 #find_package(raylib 3.0 REQUIRED)
 #set(raylib_VERBOSE 1)
 
+# RayLib:
+
+
 # Local dependency: (RayLib) :
 include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/core-include ${PROJECT_SOURCE_DIR}/dpd/include)
 link_directories( ${PROJECT_SOURCE_DIR}/dpd )
@@ -30,6 +33,14 @@ add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
 # Draft ... :
 add_executable(draft core-src/main-draft.c core-src/hki-interface.c)
 target_link_libraries(draft hackagames ${DPD_IHM_LIBS})
+
+# Hag-Play ... :
+add_executable(hag-playM core-src/main-play.c)
+target_link_libraries(hag-playM hackagames ${DPD_IHM_LIBS} -lmosquitto)
+
+# Hag-Play ZeroMQ version:... :
+add_executable(hag-playZ core-src/main-playZ.c)
+target_link_libraries(hag-playZ hackagames ${DPD_IHM_LIBS} -lczmq -lzmq)
 
 # Game NavGraph :
 ##set(NAVGRAPH_SRC

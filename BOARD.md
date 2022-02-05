@@ -2,7 +2,9 @@
 
 - Move to `HackaGames` with `hackagames-geometry`, `hackagames-tabletop` and `hackagames-server` as the 3 component of HackaGames API
 - Add test procedures
-- `hackagame-server` based on [mosquitto](https://mosquitto.org/) - `haga-draft` - `haga-talk` - `haga-play`.
+- `hackagame-server` based on [mosquitto](https://mosquitto.org/) or [zeromq](http://czmq.zeromq.org/) ?
+   * `hag-draft` - `hag-talk` - `hag-play`.
+- `hackagame-server` based on [mosquitto](https://mosquitto.org/)
 - Clean **RISKY** game as first example
 - Raylib basic player
 - jouer avec `screen` et voir la concurance.
