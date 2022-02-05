@@ -39,6 +39,20 @@ sudo apt install -y \
   libgl1-mesa-dev libglu1-mesa-dev \
 ```
 
+Then get and build RayLib:
+
+```bash
+./bin/get-raylib.sh
+```
+
+For mosquitto:
+
+```bash
+sudo apt-add-repository ppa:mosquitto-dev/mosquitto-ppa
+sudo apt update
+sudo apt install mosquitto mosquitto-dev
+```
+
 ### **HackaGame**
 
 Clone then build the overall project.
