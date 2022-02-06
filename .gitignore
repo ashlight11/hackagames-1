@@ -10,7 +10,7 @@ dpd
 __pycache__
 
 # Generated files:
-draft
+hg-*
 games/start-navgraph
 games/risky-easy
 libhackagames-interface.so

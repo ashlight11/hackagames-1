@@ -1,6 +1,6 @@
 /*******************************************************************************************
 *
-*   TOGHAP
+*   HackaGames
 *   Copyright (c) 2020-2021 Guillaume Lozenguez - Institut Mines-Telecom
 *
 ********************************************************************************************/
@@ -35,7 +35,7 @@ int main(int nbArg, char ** arg)
     if( nbArg > 4 )
         fightSeed= atoi( arg[4] );
     
-    printf("\n------------------\nTOGHAP Risky (game seed: %d - %d)\n------------------\n", mapSeed, fightSeed);
+    printf("\n------------------\nHackaGames Risky (game seed: %d - %d)\n------------------\n", mapSeed, fightSeed);
 
     // Game Initialization
     //--------------------
@@ -44,7 +44,7 @@ int main(int nbArg, char ** arg)
     // Launch the Game
     //----------------
     Game_start( game );
-    Interface* view= Interface_new( game->tabletop, 1200, 800, 10.f );
+    Interface* view= Interfzace_new( game->tabletop, 1200, 800, 10.f );
     Interface_startIHM( view );
 
     // Main game loop

@@ -30,13 +30,17 @@ set(SRC_FILES
 add_library(hackagames SHARED ${SRC_FILES})
 add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hg-inter-interface.c)
 
-# Draft ... :
+# hg-draft ... :
 add_executable(hg-draft core-src/main-draft.c core-src/hg-inter-interface.c)
 target_link_libraries(hg-draft hackagames ${DPD_IHM_LIBS})
 
-# Hag-Play ... :
+# hg-play ... :
 add_executable(hg-play core-src/main-play.c)
-target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS} -lmosquitto)
+target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS})
+
+# Hag-Play ... :
+#add_executable(hg-play core-src/main-play.c)
+#target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS} -lmosquitto)
 
 # Hag-Play ZeroMQ version:... :
 add_executable(hg-zplay core-src/main-zplay.c)
@@ -47,11 +51,11 @@ target_link_libraries(hg-zplay hackagames ${DPD_IHM_LIBS} -lczmq -lzmq)
 ##    games/navgraph/src/main-navgraph.c)
 
 ##add_executable(navgraph ${NAVGRAPH_SRC})
-##target_link_libraries(navgraph toghap ${DPD_LIBS})
+##target_link_libraries(navgraph HackaGames ${DPD_LIBS})
 
 # Risky-Game :
 set(RISKY_SRCS
     games/risky/src/risky.c)
-add_executable(risky-easy
+add_executable(hg-risky
     games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
-target_link_libraries(risky-easy hackagames-interface ${DPD_IHM_LIBS})
+target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})

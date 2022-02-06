@@ -9,9 +9,10 @@ cd build
 cmake -DCMAKE_BUILD_TYPE=Debug ..
 make
 
-# Outputs
-cp libhackagames.so ..
-cp libhackagames-interface.so ..
-cp draft ..
-# cp navgraph ../games/start-navgraph
-# cp risky-easy ../games
+# Increase dependencies:
+cp libhackagames.so ../dpd
+cp libhackagames-interface.so ../dpd
+cp core-include/* ../dpd/include
+
+# Risky
+cp hg-risky ../games/risky

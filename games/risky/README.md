@@ -1,15 +1,14 @@
-# Risky, a Toghap Game
+# Risky, an HackaGames Game
 
 Risky is a strategic turn-based game where two army fights for a territory.
 
 ## Installation
 
-We assume that Toghap is correctly compiled, and that the command `risky-easy` was generated.
+We assume that HackaGames is correctly compiled, and that the command `risky-easy` was generated.
 
-cf. [Toghap README file](../README.fr)
+cf. [HackaGames README file](../README.fr)
 
 Well, there is nothing to do here...
-
 
 ## Try the game:
 
@@ -18,8 +17,7 @@ Togap game work as a server and the player has to connect to play the games.
 For risky in a first terminal, start the server: 
 
 ```bash
-cd  game-risky
-./risky-easy
+./hg-risky
 ```
 
 Then 2 players as to reach the games on port 2014, so in two different terminals:
