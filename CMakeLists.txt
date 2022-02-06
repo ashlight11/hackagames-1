@@ -22,25 +22,25 @@ set(DPD_IHM_LIBS raylib pthread dl rt X11 m)
 
 # Toghap and Toghap-player libs :
 set(SRC_FILES
-    core-src/hkg-geometry.c
-    core-src/hkt-organism.c
-    core-src/hks-game.c
+    core-src/hg-geo-geometry.c
+    core-src/hg-tab-organism.c
+    core-src/hg-ser-game.c
 )
 
 add_library(hackagames SHARED ${SRC_FILES})
-add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hki-interface.c)
+add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hg-inter-interface.c)
 
 # Draft ... :
-add_executable(draft core-src/main-draft.c core-src/hki-interface.c)
-target_link_libraries(draft hackagames ${DPD_IHM_LIBS})
+add_executable(hg-draft core-src/main-draft.c core-src/hg-inter-interface.c)
+target_link_libraries(hg-draft hackagames ${DPD_IHM_LIBS})
 
 # Hag-Play ... :
-add_executable(hag-playM core-src/main-play.c)
-target_link_libraries(hag-playM hackagames ${DPD_IHM_LIBS} -lmosquitto)
+add_executable(hg-play core-src/main-play.c)
+target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS} -lmosquitto)
 
 # Hag-Play ZeroMQ version:... :
-add_executable(hag-playZ core-src/main-playZ.c)
-target_link_libraries(hag-playZ hackagames ${DPD_IHM_LIBS} -lczmq -lzmq)
+add_executable(hg-zplay core-src/main-zplay.c)
+target_link_libraries(hg-zplay hackagames ${DPD_IHM_LIBS} -lczmq -lzmq)
 
 # Game NavGraph :
 ##set(NAVGRAPH_SRC
