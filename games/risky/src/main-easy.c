@@ -44,7 +44,7 @@ int main(int nbArg, char ** arg)
     // Launch the Game
     //----------------
     Game_start( game );
-    Interface* view= Interfzace_new( game->tabletop, 1200, 800, 10.f );
+    Interface* view= Interface_new( game->tabletop, 1200, 800, 10.f );
     Interface_startIHM( view );
 
     // Main game loop

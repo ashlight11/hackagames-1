@@ -30,6 +30,13 @@ set(SRC_FILES
 add_library(hackagames SHARED ${SRC_FILES})
 add_library(hackagames-interface SHARED ${SRC_FILES} core-src/hg-inter-interface.c)
 
+#-----------#
+## T E S T ##
+#-----------#
+if(TEST)
+
+endif()
+
 # hg-draft ... :
 add_executable(hg-draft core-src/main-draft.c core-src/hg-inter-interface.c)
 target_link_libraries(hg-draft hackagames ${DPD_IHM_LIBS})

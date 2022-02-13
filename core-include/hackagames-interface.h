@@ -9,7 +9,7 @@
 struct Str_Interface {
     Float2 camera, screenCenter;
     int frameWidth, frameHeight;
-    float scale; // meter per pixel
+    float scale; // pixel per meter
     Organism* tabletop;
     Float2 cursor;
     pthread_t thread;
@@ -74,6 +74,7 @@ bool Interface_IHMIsOpen(Interface* self);
 void Interface_draw(Interface * self);
 void Interface_drawBasis(Interface * self);
 void Interface_drawCursor(Interface * self);
+void Interface_drawTabletop(Interface * self, Organism * aTtop);
 void Interface_drawOrganism(Interface * self, Organism * aOrganism);
 void Interface_drawPiece(Interface * self, Float2 basis, Organism * piece);
 void Interface_drawEdge(Interface * self, Organism * aOrganism, Organism * aTarget);

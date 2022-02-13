@@ -2,7 +2,7 @@
 #define HACKAGAMES_GEOMETRY_H
 
 #define min(X, Y) (((X) < (Y)) ? (X) : (Y))
-#define max(X, Y) (((X) < (Y)) ? (X) : (Y))
+#define max(X, Y) (((X) > (Y)) ? (X) : (Y))
 
 typedef struct Str_Float2 {
     float x;

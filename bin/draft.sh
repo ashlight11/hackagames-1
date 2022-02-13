@@ -1,5 +1,5 @@
 #!/bin/bash
 
 rm draft
-./bin/build.sh
-./draft
+./bin/debug.sh
+./build/hg-draft

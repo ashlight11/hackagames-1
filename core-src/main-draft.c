@@ -11,9 +11,9 @@
 #include "hackagames-interface.h"
 
 #include <stdlib.h>
-#include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 #define NUM_PLAYER 0
 
@@ -62,15 +62,18 @@ int main(int nbArg, char ** arg)
     Interface* frame= Interface_new(tabletop, 1200, 800, 24.f);
     Interface_startIHM( frame );
 
-
     // Main game loop
     //---------------
     puts("Start the main loop");
     int count= 0;
-    while ( Interface_IHMIsOpen(frame)  )
+    while ( count < 5 && Interface_IHMIsOpen(frame)  )
     {
         ++count;
+        sleep(1);
     }
+
+    puts("Prints tabletops");
+    Organism_print(tabletop);
 
     // Clean Stop 
     //-----------

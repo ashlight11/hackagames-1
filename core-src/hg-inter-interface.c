@@ -37,6 +37,7 @@ void Interface_construct(Interface * self, Organism* tabletop, int frameWidth, i
     self->cursor.x= 0.f;
     self->cursor.y= 0.f;
     self->isReady= false;
+    printf("NEW INTERFACE: scale: %f\n", self->scale);
 }
 
 Interface * Interface_new(Organism* tabletop, int frameWidth, int frameHeight, float scale)
@@ -71,7 +72,7 @@ void* void_InterfaceLoop(void* void_interface)
     InitWindow(self->frameWidth, self->frameHeight, self->tabletop->name);
     SetTargetFPS(60);
 
-    while ( !WindowShouldClose() )
+    while ( self->isReady && !WindowShouldClose() )
     {
         Interface_control(self);
         Interface_draw(self);
@@ -105,9 +106,9 @@ void Interface_startIHM(Interface * self)
 
 void Interface_stopIHM(Interface * self)
 {
+    self->isReady= false;
     void* ret;
     pthread_join(self->thread, &ret);
-    self->isReady= false;
 }
 
 bool Interface_IHMIsOpen(Interface* self)
@@ -131,27 +132,31 @@ void Interface_draw(Interface * self)
     BeginDrawing();
     ClearBackground(RAYWHITE);
 
-    Organism* ttop=  self->tabletop;
+    Interface_drawTabletop(self, self->tabletop);
+    //Interface_drawBasis(self);
 
+    EndDrawing();
+}
+
+// Rendering
+void Interface_drawTabletop(Interface * self, Organism * aTtop)
+{
     // Draw connectivity:
-    for(int i= 0 ; i < ttop->size ; ++i )
+    for(int i= 0 ; i < aTtop->size ; ++i )
     {
-        Organism * cell= ttop->cells[i];
-        int cardinality= ttop->links[i][0];
+        Organism * cell= aTtop->cells[i];
+        int cardinality= aTtop->links[i][0];
         for(int ii= 1 ; ii <= cardinality ; ++ii )
         {
-            Interface_drawEdge( self, cell, ttop->cells[ ttop->links[i][ii] ] );
+            Interface_drawEdge( self, cell, aTtop->cells[ aTtop->links[i][ii] ] );
         }
     }
 
     // Draw the nodes
-    for(int i= 0 ; i < ttop->size ; ++i )
+    for(int i= 0 ; i < aTtop->size ; ++i )
     {
-        Interface_drawOrganism( self, ttop->cells[i] );
+        Interface_drawOrganism( self, aTtop->cells[i] );
     }
-    
-    // Interface_drawBasis(self);
-    EndDrawing(); 
 }
 
 void Interface_drawBasis(Interface * self)
@@ -163,6 +168,7 @@ void Interface_drawBasis(Interface * self)
     ref.x= 0.f;
     ref.y= 1.f;
     Vector2 screen01= Interface_pixelFromPosition(self, ref );
+
     DrawCircleV( screen00, 4, BLUE );   
     DrawLineV( screen00, screen10, RED );
     DrawLineV( screen00, screen01, BLUE );
@@ -294,6 +300,7 @@ void Interface_controlCamera(Interface * self)
     if (IsKeyDown(KEY_UP)) self->camera.y += step;
     if (IsKeyDown(KEY_DOWN)) self->camera.y -= step;
 
-    self->scale += (GetMouseWheelMove()*1.f);
+    int move= GetMouseWheelMove();
+    self->scale += ( (float)move * 1.f);
     self->scale = max( self->scale, 0.001f );
 }

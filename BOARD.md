@@ -35,6 +35,12 @@ The idea is to permit to ad or remove more easelly Cells
 - **removing** clean removing of cells (i.e. including links...)
 
 
+### State/Step engine :
+
+We consider that games is organized in turns composed of a succession of steps. 
+A Step matches a game interaction resolution with its proper variables, not nessessary incuded in the game states. 
+Log the steps: (for future learning algorythms)
+
 ### An augmented human interface:
 
 Implement a standard svg output.
