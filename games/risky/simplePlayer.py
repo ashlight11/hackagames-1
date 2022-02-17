@@ -2,7 +2,7 @@
 import pyrisky.client as client
 import random
 
-def main():
+def takeASeat():
     client.takeASeat('localhost', 2014, Player() )
 
 class Piece() :
@@ -142,4 +142,4 @@ class Player() :
 
 # Activate default interface :
 if __name__ == '__main__':
-    main()
+    takeASeat()

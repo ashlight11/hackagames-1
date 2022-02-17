@@ -1,11 +1,11 @@
 # BOARD of the project
 
-- Move to `HackaGames` with `hackagames-geometry`, `hackagames-tabletop` and `hackagames-server` as the 3 component of HackaGames API
+- Need a clean destruction if one of the player disconect.
 - Add test procedures
 - `hackagame-server` based on [mosquitto](https://mosquitto.org/) or [zeromq](http://czmq.zeromq.org/) ?
    * `hg-draft` - `hg-talk` - `hg-play`.
-- `hackagame-server` based on [mosquitto](https://mosquitto.org/)
-- Clean **RISKY** game as first example
+- Clean **RISKY** game as first example (move action)
+- Clean **MORPION** game as second example (the simplest) (pop action)
 - Raylib basic player
 - jouer avec `screen` et voir la concurance.
 - Wraps python
