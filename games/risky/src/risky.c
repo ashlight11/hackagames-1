@@ -15,8 +15,11 @@ char* action_names[3]= {"move", "grow", "sleep"};
 
 Game* initializeGame()
 {
+    puts("Let's initialize the game");
     Game* game= Game_new( generateRandomTabletop( Organism_new("Risky-Random", 0, 12) ), 2 );
+    puts("new games");
     initializePlayers(game);
+    puts("and players");
     return game;
 }
 
@@ -30,16 +33,20 @@ void resetGame(Game* game)
 
 void initializePlayers(Game* game)
 {
+    puts("lets initialize player:");
     int position_p1= Organism_extremCellIdTo( game->tabletop, 0 );
     int position_p2= Organism_extremCellIdTo( game->tabletop, position_p1 );
+    puts("2 positions");
 
     Organism* piece= Organism_addPieceOn(game->tabletop, position_p1, Organism_new("Humans", PIECE_ATTR_SIZE, 0) );
     piece->attrs[PIECE_OWNER]= 1;
     piece->attrs[PIECE_STRENGH]= 24;
-
+    puts("first organism");
+    
     piece= Organism_addPieceOn(game->tabletop, position_p2, Organism_new("Humans", PIECE_ATTR_SIZE, 0) );
     piece->attrs[PIECE_OWNER]= 2;
     piece->attrs[PIECE_STRENGH]= 24;
+    puts("second organism");
     
     //initialise all player data socket to 0, a color...
     for (int i = 0; i <= game->nbPlayer; i++)

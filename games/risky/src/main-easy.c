@@ -35,17 +35,24 @@ int main(int nbArg, char ** arg)
     if( nbArg > 4 )
         fightSeed= atoi( arg[4] );
     
-    printf("\n------------------\nHackaGames Risky (game seed: %d - %d)\n------------------\n", mapSeed, fightSeed);
+    printf(
+        "\n------------------\nHackaGames Risky (game seed: %d - %d)\n------------------\n",
+        mapSeed, fightSeed);
 
     // Game Initialization
     //--------------------
     Game* game= initializeGame();
 
+    puts("Game initialized");
+
     // Launch the Game
     //----------------
     Game_start( game );
+    puts("Game started");
+
     Interface* view= Interface_new( game->tabletop, 1200, 800, 10.f );
     Interface_startIHM( view );
+    puts("IHM started");
 
     // Main game loop
     for( int iGame= 0 ;  iGame < nbGame ; ++iGame )

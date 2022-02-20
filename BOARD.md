@@ -1,15 +1,16 @@
 # BOARD of the project
 
 - Need a clean destruction if one of the player disconect.
-- Add test procedures
 - `hackagame-server` based on [mosquitto](https://mosquitto.org/) or [zeromq](http://czmq.zeromq.org/) ?
    * `hg-draft` - `hg-talk` - `hg-play`.
 - Clean **RISKY** game as first example (move action)
 - Clean **MORPION** game as second example (the simplest) (pop action)
+- Generate .deb file. [first tuto](https://medium.com/deplink/how-to-create-a-deb-file-tutorial-b56388fc35fd)
 - Raylib basic player
 - jouer avec `screen` et voir la concurance.
 - Wraps python
 - Wrap Pharo
+- Add test procedures
 
 ### Tabletop:
 

@@ -336,7 +336,7 @@ Organism* Organism_cell( Organism* self, int i )
 
 int Organism_extremCellIdTo( Organism* self, int id )
 {
-        // Security:
+    // Security:
     if( self->size <= 1 )
         return id;
 

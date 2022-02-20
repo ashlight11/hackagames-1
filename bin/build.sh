@@ -6,13 +6,13 @@ mkdir build
 fi
 
 cd build
-cmake -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DTEST=ON -DCMAKE_BUILD_TYPE=Debug ..
 make
 
 # Increase dependencies:
 cp libhackagames.so ../dpd
 cp libhackagames-interface.so ../dpd
-cp core-include/* ../dpd/include
+cp ../core-include/* ../dpd/include
 
 # Risky
 cp hg-risky ../games/risky
