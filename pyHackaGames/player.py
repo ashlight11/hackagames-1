@@ -2,7 +2,7 @@
 
 def main():
     import client
-    client.takeASeat('localhost', 2014, Player() )
+    client.takeASeat('localhost', 14001, Player() )
 
 class Player() :
     def wakeUp(self, tabletop):

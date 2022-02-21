@@ -13,6 +13,7 @@
 #include <math.h>
 #include <string.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #include <pthread.h>
 #include <netinet/in.h> 
@@ -37,6 +38,9 @@ void Interface_construct(Interface * self, Organism* tabletop, int frameWidth, i
     self->cursor.x= 0.f;
     self->cursor.y= 0.f;
     self->isReady= false;
+    self->attributMask_size= -1;
+    self->attributMask= malloc( sizeof(int) );
+
     printf("NEW INTERFACE: scale: %f\n", self->scale);
 }
 
@@ -53,6 +57,7 @@ Interface * Interface_newBasic()
 
 void Interface_distroy( Interface * self )
 {
+    free(self->attributMask);
     self->frameWidth= 0;
     self->frameHeight= 0;
 }
@@ -71,7 +76,7 @@ void* void_InterfaceLoop(void* void_interface)
     //----------------------
     InitWindow(self->frameWidth, self->frameHeight, self->tabletop->name);
     SetTargetFPS(60);
-
+    
     while ( self->isReady && !WindowShouldClose() )
     {
         Interface_control(self);
@@ -88,7 +93,7 @@ void* void_InterfaceLoop(void* void_interface)
 
 void Interface_startIHM(Interface * self)
 {
-    puts("TOGHAP: Launch IHM Thread");
+    puts("HackaGames: Launch IHM Thread");
     self->isReady= true;
 
     int rc = pthread_create( 
@@ -126,6 +131,18 @@ char* Interface_str(Interface * self, char* buffer)
     return buffer;
 }
 
+
+// Configuration
+int* Interface_setAttributMask_ofSize(Interface* self, int* mask, int mask_size)
+{
+    free(self->attributMask);
+    self->attributMask= malloc( sizeof(int) * max(mask_size, 1) );
+    self->attributMask_size= max(mask_size, 0);
+    for( int i= 0 ; i < self->attributMask_size ; ++i )
+        self->attributMask[i]= mask[i];
+    return self->attributMask;
+}
+
 // Rendering
 void Interface_draw(Interface * self)
 {
@@ -155,7 +172,7 @@ void Interface_drawTabletop(Interface * self, Organism * aTtop)
     // Draw the nodes
     for(int i= 0 ; i < aTtop->size ; ++i )
     {
-        Interface_drawOrganism( self, aTtop->cells[i] );
+        Interface_drawCell( self, aTtop->cells[i] );
     }
 }
 
@@ -174,7 +191,7 @@ void Interface_drawBasis(Interface * self)
     DrawLineV( screen00, screen01, BLUE );
 }
 
-void Interface_drawOrganism(Interface * self, Organism * aOrganism)
+void Interface_drawCell(Interface * self, Organism * aOrganism)
 {
     Vector2 screenPosition= Interface_pixelFromPosition(self, aOrganism->position );
     Color color= {
@@ -245,20 +262,31 @@ void Interface_drawPiece(Interface * self, Float2 position, Organism * minion)
     DrawTriangle(A, B, C, color); //minion->color);
     DrawCircleV(A, radius-4, color); //minion->color);
 
-    // First attribute:
-    if( minion->attrs_size > 0 )
-    {
-        char attributes_str[128]= "";
-        char buffer[16];
+    // Generation attribute strings:
+    char attributes_str[512]= "";
+    char buffer[32];
 
+    if( self->attributMask_size < 0 && minion->attrs_size > 0 )
+    {// Regular way:
         sprintf(attributes_str, "%d", Organism_attribute(minion, 0) );
         for( int i = 1 ; i < minion->attrs_size ; ++i )
         {
             sprintf(buffer, "-%d", Organism_attribute(minion, i) );
             strcat( attributes_str, buffer );
         }
-        DrawText( attributes_str, B.x+1, B.y+1, 14, BLACK);
     }
+    else if( self->attributMask_size > 0)
+    {// selection of attributs based on Mask:
+        assert( 0 <= self->attributMask[0] && self->attributMask[0] < minion->attrs_size ); // Mask out off the attribute range. 
+        sprintf( attributes_str, "%d", Organism_attribute(minion, self->attributMask[0] ) );
+        for( int i = 1 ; i < self->attributMask_size ; ++i )
+        {
+            assert( 0 <= self->attributMask[i] && self->attributMask[i] < minion->attrs_size ); // Mask out off the attribute range. 
+            sprintf(buffer, "-%d", Organism_attribute(minion, self->attributMask[i]) );
+            strcat( attributes_str, buffer );
+        }
+    }
+    DrawText( attributes_str, B.x+1, B.y+1, 16, BLACK);
 }
 
 Vector2 Interface_pixelFromPosition(Interface * self, Float2 p)

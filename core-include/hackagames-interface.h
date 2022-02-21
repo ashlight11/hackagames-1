@@ -14,6 +14,9 @@ struct Str_Interface {
     Float2 cursor;
     pthread_t thread;
     bool isReady;
+    // Mask to select the attributs to show on the IHM
+    int attributMask_size; // mean that all the attributs would be displayed
+    int* attributMask;
 //    pthread_t thread;
 };
 typedef struct Str_Interface Interface;
@@ -70,12 +73,15 @@ void Interface_startIHM(Interface* self);
 void Interface_stopIHM(Interface* self);
 bool Interface_IHMIsOpen(Interface* self);
 
+// Configuration
+int* Interface_setAttributMask_ofSize(Interface* self, int* mask, int mask_size);
+
 // Rendering
 void Interface_draw(Interface * self);
 void Interface_drawBasis(Interface * self);
 void Interface_drawCursor(Interface * self);
 void Interface_drawTabletop(Interface * self, Organism * aTtop);
-void Interface_drawOrganism(Interface * self, Organism * aOrganism);
+void Interface_drawCell(Interface * self, Organism * aOrganism);
 void Interface_drawPiece(Interface * self, Float2 basis, Organism * piece);
 void Interface_drawEdge(Interface * self, Organism * aOrganism, Organism * aTarget);
 

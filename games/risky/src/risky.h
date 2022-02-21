@@ -29,9 +29,16 @@ enum Actions
 enum Piece_Attributes
 {
     PIECE_OWNER= 0,
-    PIECE_ACTIVED,
+    PIECE_TYPE,
     PIECE_STRENGH,
-    PIECE_ATTR_SIZE
+    PIECE_ACTIVED,
+    PIECE_SIZE
+};
+
+enum Piece_Type
+{
+    TYPE_SOLDIER= 0,
+    TYPE_SIZE
 };
 
 // Game managment
@@ -41,6 +48,7 @@ void resetGame(Game* game);
 void initializePlayers(Game* game);
 int updateScore( Game* game, int playerID );
 Organism * generateRandomTabletop( Organism* tabletop );
+Organism * generateClassicalTabletop( Organism* tabletop );
 void riskyLoop(Game * game, int num_turn, int num_action_per_trun);
 
 // Game actions

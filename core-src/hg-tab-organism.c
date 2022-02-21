@@ -340,13 +340,14 @@ int Organism_extremCellIdTo( Organism* self, int id )
     if( self->size <= 1 )
         return id;
 
+    // test cells from 0 to id
     int extrem= 0;
     if( extrem == id )
         extrem= 1;
 
     float dist2= Float2_distance2( self->cells[id]->position, self->cells[extrem]->position);
 
-    // test cells from 1 to id 
+    // and all the other until id
     for( int candidate= extrem+1 ; candidate < id ; ++candidate )
     {
         float test2= Float2_distance2( self->cells[id]->position, self->cells[candidate]->position);
@@ -357,8 +358,8 @@ int Organism_extremCellIdTo( Organism* self, int id )
         }
     }
 
-    // test cells from id to the ast one
-    for( int candidate= max(extrem+1, id+1) ; self->size ; ++candidate )
+    // test cells from id to the last ones
+    for( int candidate= max(extrem+1, id+1) ; candidate < self->size ; ++candidate )
     {
         float test2= Float2_distance2( self->cells[id]->position, self->cells[candidate]->position);
         if( test2 > dist2 )

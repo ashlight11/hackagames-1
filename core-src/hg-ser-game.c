@@ -19,7 +19,7 @@
 
 #define TRUE   1 
 #define FALSE  0 
-#define PORT 2014
+#define PORT 14001
 
 // Constructor / Destructor
 Game * Game_new(Organism * tabletop, int nbPlayer)

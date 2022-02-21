@@ -42,7 +42,6 @@ int main(int nbArg, char ** arg)
     // Game Initialization
     //--------------------
     Game* game= initializeGame();
-
     puts("Game initialized");
 
     // Launch the Game
@@ -50,11 +49,15 @@ int main(int nbArg, char ** arg)
     Game_start( game );
     puts("Game started");
 
-    Interface* view= Interface_new( game->tabletop, 1200, 800, 10.f );
+    Interface* view= Interface_new( game->tabletop, 1200, 800, 24.f );
+    int ihmMask[2]= {PIECE_STRENGH, PIECE_ACTIVED};
+    Interface_setAttributMask_ofSize(view, ihmMask, 2);
+    
     Interface_startIHM( view );
     puts("IHM started");
 
     // Main game loop
+    puts("Stats the games:");
     for( int iGame= 0 ;  iGame < nbGame ; ++iGame )
     {
         srand( mapSeed );
