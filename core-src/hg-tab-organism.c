@@ -94,7 +94,7 @@ void Organism_constructAs(Organism* self, Organism* model)
 Organism * Organism_new(int type, char* name, int owner, int attrs_size, int capacity)
 {
     Organism * self= malloc( sizeof(Organism) );
-    Organism_construct(self, type, name, owner, attrs_size, capacity, 0.f, 0.f);
+    Organism_construct(self, type, name, owner, attrs_size,  0.f, 0.f, capacity);
     return self;
 }
 
@@ -106,7 +106,7 @@ Organism * Organism_newBasic(char* name)
 Organism* Organism_newPosition(char* name, float x, float y)
 {
     Organism * self= malloc( sizeof(Organism) );
-    Organism_construct(self, 0, name, 0, 0, 0, x, y);
+    Organism_construct(self, 0, name, 0, 0, x, y, 0);
     return self;
 }
 

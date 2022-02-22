@@ -59,8 +59,8 @@ int main(int nbArg, char ** arg)
     Organism* tabletop= Organism_newBasic("Tabletop");
     tabletop->shape= 40.f;
 
-    generateRandomTabletop(tabletop, 24);
-    //generateFixedTabletop(tabletop);
+    //generateRandomTabletop(tabletop, 24);
+    generateFixedTabletop(tabletop);
 
     puts("Prints tabletops");
     Organism_print(tabletop);
