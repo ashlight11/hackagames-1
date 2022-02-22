@@ -17,16 +17,13 @@ int player_colors[3]= {0x808080FF, 0xFF0000FF, 0x0000FFFF};
 Game* initializeGame()
 {
     Game* game= Game_new( generateClassicalTabletop( Organism_newBasic("Risky") ), 2 );
-    initializePlayers(game);
     return game;
 }
 
 void resetGame(Game* game)
 {
-    Organism_destroy( game->tabletop );
-    Organism_construct( game->tabletop, 0, "Risky", 0, 0, 0.f, 0.f, 12 );
     generateClassicalTabletop( game->tabletop );
-    initializePlayers(game);
+    initializePlayers(game, false);
 }
 
 Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner, int strengh)
@@ -38,13 +35,19 @@ Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int ow
     return piece;
 }
 
-void initializePlayers(Game* game)
+void initializePlayers(Game* game, int extrem)
 {
-    int position_p1= Organism_extremCellIdTo( game->tabletop, 0 );
-    int position_p2= Organism_extremCellIdTo( game->tabletop, position_p1 );
+    int position_player1= 0;
+    int position_player2= 1;
 
-    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_p1, 1, 24 );
-    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_p2, 2, 24 );
+    if( extrem )//extrem position in random maps...
+    {
+        position_player2= Organism_extremCellIdTo( game->tabletop, 0 );
+        position_player1= Organism_extremCellIdTo( game->tabletop, position_player2 );
+    }
+
+    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_player1, 1, 24 );
+    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_player2, 2, 24 );
 
     //initialise all player data socket to 0, a color...
     for (int i = 0; i <= game->nbPlayer; i++)
@@ -52,6 +55,7 @@ void initializePlayers(Game* game)
         game->scores[i] = 0;
     }
 }
+
 
 // Game managment
 //-----------------------
@@ -360,8 +364,9 @@ Organism * generateRandomTabletop( Organism * tabletop )
 
 Organism * generateClassicalTabletop( Organism* tabletop )
 {
+    // Must reset the tabletop witout distroying it.....
     Organism_destroy( tabletop );
-    Organism_construct(tabletop, 0, "Risky", 0, 0, 0.f,0.f, 14);
+    Organism_construct(tabletop, 0, "Risky", 0, 0, 0.f, 0.f, 14);
     Organism_addCell( tabletop, Organism_newPosition("Cell-00", -18.f,  0.f) );
     Organism_addCell( tabletop, Organism_newPosition("Cell-01", 18.f,  0.f) );
     Organism_addCell( tabletop, Organism_newPosition("Cell-02", -12.f,  6.f) );

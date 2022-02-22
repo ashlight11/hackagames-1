@@ -58,7 +58,7 @@ int main(int nbArg, char ** arg)
     puts("IHM started");
 
     // Main game loop
-    puts("Stats the games:");
+    puts("Starts the games:");
     for( int iGame= 0 ;  iGame < nbGame ; ++iGame )
     {
         srand( mapSeed );

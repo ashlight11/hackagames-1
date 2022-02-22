@@ -46,7 +46,7 @@ enum Piece_Type
 //-----------------------
 Game* initializeGame();
 void resetGame(Game* game);
-void initializePlayers(Game* game);
+void initializePlayers(Game* game, int extrem);
 int updateScore( Game* game, int playerID );
 Organism * generateRandomTabletop( Organism* tabletop );
 Organism * generateClassicalTabletop( Organism* tabletop );
