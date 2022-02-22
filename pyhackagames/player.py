@@ -5,8 +5,10 @@ def main():
     client.takeASeat('localhost', 14001, Player() )
 
 class Piece() :
-    def __init__(self, name, position, attributs):
+    def __init__(self, type, name, ower, position, attributs):
+        self.type= type
         self.name= name
+        self.owner= owner
         self.position= int(position)
         self.attributs= [int(x) for x in attributs]
 

@@ -83,7 +83,6 @@ void Organism_copy( Organism * self, Organism * model );
  */
 void Organism_print( Organism * self );
 char* Organism_str( Organism * self, char* buffer );
-char* Organism_strAttributs( Organism * self, char* buffer );
 
 /**
  * @brief    set the name of an Organism @param self as @param name.

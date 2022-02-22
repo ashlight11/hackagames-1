@@ -52,7 +52,7 @@ Organism * generateRandomTabletop( Organism* tabletop );
 Organism * generateClassicalTabletop( Organism* tabletop );
 void riskyLoop(Game * game, int num_turn, int num_action_per_trun);
 
-Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner, int strengh)
+Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner, int strengh);
 
 // Game actions
 //-----------------------

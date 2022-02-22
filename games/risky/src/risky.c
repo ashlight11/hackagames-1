@@ -24,7 +24,7 @@ Game* initializeGame()
 void resetGame(Game* game)
 {
     Organism_destroy( game->tabletop );
-    Organism_construct( game->tabletop, 0, "Risky", 0, 0, 12 );
+    Organism_construct( game->tabletop, 0, "Risky", 0, 0, 0.f, 0.f, 12 );
     generateClassicalTabletop( game->tabletop );
     initializePlayers(game);
 }
@@ -43,13 +43,8 @@ void initializePlayers(Game* game)
     int position_p1= Organism_extremCellIdTo( game->tabletop, 0 );
     int position_p2= Organism_extremCellIdTo( game->tabletop, position_p1 );
 
-    Organism* piece= Tabletop_addSoldierOn_ownedBy(
-        game->tabletop, position_p1, 1, 24
-    );
-    
-    piece= Tabletop_addSoldierOn_ownedBy(
-        game->tabletop, position_p2, 2, 24
-    );
+    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_p1, 1, 24 );
+    Tabletop_addSoldierOn_ownedBy( game->tabletop, position_p2, 2, 24 );
 
     //initialise all player data socket to 0, a color...
     for (int i = 0; i <= game->nbPlayer; i++)
@@ -88,7 +83,7 @@ void riskyLoop(Game * game, int num_turn, int num_action_per_trun)
     while( game->turn > 0 )
     {
         Game_sendGameTo( game, player );
-        Organism* action= Organism_newBasic();
+        Organism* action= Organism_newBasic("Action");
         Game_requestPlayer( game, player, action );
         int endTurn= resolveAction( game, player, action, num_action_per_trun );
         if( endTurn )
@@ -117,7 +112,7 @@ int resolveAction(Game* game, int playerID, Organism* action, int oneAction )
     // if oneAction= 0, the game wait for a sleep action to pass to another player.
     int endTurn= oneAction;
     char buffer[1024];
-    Organism_strAttributs(action, buffer);
+    Organism_attributsStr(action, buffer);
 
     // Get action from nam
     int iAction= 0;
@@ -175,7 +170,7 @@ void actionSleep( Game* game, int playerID )
     for( int iNode= 0 ; iNode < game->tabletop->size ; ++iNode )
     {
         Organism* node= Organism_cell( game->tabletop, iNode );
-        if( node->size > 0 && node->cells[0]->attrs[PIECE_OWNER] == playerID )
+        if( node->size > 0 && node->cells[0]->owner == playerID )
         {
             node->cells[0]->attrs[PIECE_ACTIVED]= 0;
         }
@@ -195,7 +190,7 @@ void actionGrow( Game* game, int playerID, int iNode)
     }
 
     Organism* minion= node->cells[0];
-    if( minion->attrs[PIECE_OWNER] != playerID )
+    if( minion->owner != playerID )
     {
         Game_sendMsgTo(game, "Info: wrong action - not a player's minion\n", playerID);
         actionSleep( game, playerID );
@@ -215,7 +210,7 @@ void actionGrow( Game* game, int playerID, int iNode)
     for( int i= 0 ; i < card ; ++i )
     {
         Organism* neibourg=  Organism_linkTarget(game->tabletop, iNode, i);
-        if( neibourg->size > 0 && neibourg->cells[0]->attrs[PIECE_OWNER] == playerID )
+        if( neibourg->size > 0 && neibourg->cells[0]->owner == playerID )
         {
             ++count;
         }
@@ -246,7 +241,7 @@ void actionMove(Game* game, int playerID, int from,  int to, int strengh )
     }
 
     Organism* minion= start->cells[0];
-    if( minion->attrs[PIECE_OWNER] != playerID )
+    if( minion->owner != playerID )
     {
         Game_sendMsgTo(game, "Info: wrong movement - not a player's minion\n", playerID);
         actionSleep( game, playerID );
@@ -269,7 +264,7 @@ void actionMove(Game* game, int playerID, int from,  int to, int strengh )
     if( target->size >= 1 )
     {
         Organism* host= target->cells[0];
-        if( host->attrs[PIECE_OWNER] == playerID ) // if friends: merge
+        if( host->owner == playerID ) // if friends: merge
         {
             host->attrs[PIECE_STRENGH]+= strengh;
             host->attrs[PIECE_ACTIVED]= 1;
@@ -347,7 +342,8 @@ Organism * generateRandomTabletop( Organism * tabletop )
     tabletop->shape= 120.f;
 
     //puts("    Create a first piece    ");
-    Organism* cell= Organism_addCell( tabletop, Organism_new(0, "-", 0, 0, 1) );
+    Organism* cell= Organism_addCell(
+        tabletop, Organism_newPosition("Cell", 0.f, 0.f) );
     cell->color= 0x767680FF;
     
     //puts("    generate random cells    ");
@@ -365,22 +361,22 @@ Organism * generateRandomTabletop( Organism * tabletop )
 Organism * generateClassicalTabletop( Organism* tabletop )
 {
     Organism_destroy( tabletop );
-    Organism_construct(tabletop, "Risky", 0, 12);
-    Organism_addCell( tabletop, Organism_newPosition("Cell-00", 0, 1, -18.f,  0.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-01", 0, 1,  18.f,  0.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-02", 0, 1, -12.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-03", 0, 1,  12.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-04", 0, 1, -12.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-05", 0, 1,  12.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-06", 0, 1, -6.f, 12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-07", 0, 1,  6.f, 12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-08", 0, 1, -6.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-09", 0, 1,   6.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-10", 0, 1,   0.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-11", 0, 1,   0.f, 00.f) );
+    Organism_construct(tabletop, 0, "Risky", 0, 0, 0.f,0.f, 14);
+    Organism_addCell( tabletop, Organism_newPosition("Cell-00", -18.f,  0.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-01", 18.f,  0.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-02", -12.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-03", 12.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-04", -12.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-05",  12.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-06", -6.f, 12.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-07",  6.f, 12.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-08", -6.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-09",   6.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-10",   0.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-11",   0.f, 00.f) );
 
-    Organism_addCell( tabletop, Organism_newPosition("Cell-12", 0, 1,   -20.f, -12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-13", 0, 1,   20.f, -12.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-12",   -20.f, -12.f) );
+    Organism_addCell( tabletop, Organism_newPosition("Cell-13",   20.f, -12.f) );
 
     Organism_biconnect(tabletop, 0, 2);
     Organism_biconnect(tabletop, 0, 4);

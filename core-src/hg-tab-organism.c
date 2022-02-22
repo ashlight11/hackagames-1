@@ -218,22 +218,6 @@ char* Organism_str( Organism * self, char* buffer )
     return buffer;
 }
 
-char* Organism_strAttributs( Organism * self, char* str)
-{
-    char buffer[1014];
-    strcpy(str, self->name);
-    sprintf( buffer, " %d attributs", self->attrs_size );
-    strcat(str, buffer);
-
-    for( int i= 0 ; i < self->attrs_size ; ++i )
-    {
-        sprintf( buffer, " %d", self->attrs[i] );
-        strcat(str, buffer);
-    }
-
-    return str;
-}
-
 void Organism_setName( Organism * self, char* name )
 {   
     free( self->name );
@@ -263,24 +247,27 @@ int Organism_attribute( Organism* self, int i )
 }
 
 
-char* Organism_attributsStr( Organism * self, char* buffer )
+char* Organism_attributsStr( Organism * self, char* str )
 {
-    char cellBuffer[1024];
-    sprintf( buffer, "%s %d attributs",
-        self->name,
-        self->attrs_size );
-
+    char buffer[1014];
+    sprintf( str, "%i %s %i %i attributs",
+            self->type,
+            self->name,
+            self->owner,
+            self->attrs_size );
+    
     for( int i= 0 ; i < self->attrs_size ; ++i )
     {
-        sprintf( cellBuffer, " %d", self->attrs[i] );
-        strcat(buffer, cellBuffer);
+        sprintf( buffer, " %d", self->attrs[i] );
+        strcat(str, buffer);
     }
 
-    return buffer;
+    return str;
 }
 
 void Organism_attributsFromStr( Organism * self, char* str )
 {
+    assert(false); // Function to check
     int bound= strlen(str)+1;
     char buffer[ bound ];
     int attributs[ bound ];

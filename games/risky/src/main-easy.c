@@ -15,7 +15,8 @@
 #define NUM_TURN   30
 #define NUM_ACTION_PER_TURN 1
 
-int fight( Organism* target, int strengh ){ return fightDeterminist(target, strengh); }
+int fight( Organism* target, int strengh )
+    { return fightDeterminist(target, strengh); }
 
 int main(int nbArg, char ** arg)
 {
