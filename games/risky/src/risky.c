@@ -12,10 +12,11 @@
 #define DICE_DEFENCE 4
 
 char* action_names[3]= {"move", "grow", "sleep"};
+int player_colors[3]= {0x808080FF, 0xFF0000FF, 0x0000FFFF};
 
 Game* initializeGame()
 {
-    Game* game= Game_new( generateClassicalTabletop( Organism_new("Risky", 0, 1) ), 2 );
+    Game* game= Game_new( generateClassicalTabletop( Organism_newBasic("Risky") ), 2 );
     initializePlayers(game);
     return game;
 }
@@ -23,19 +24,17 @@ Game* initializeGame()
 void resetGame(Game* game)
 {
     Organism_destroy( game->tabletop );
-    Organism_construct( game->tabletop, "Risky", 0, 12 );
+    Organism_construct( game->tabletop, 0, "Risky", 0, 0, 12 );
     generateClassicalTabletop( game->tabletop );
     initializePlayers(game);
 }
 
-Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner)
+Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner, int strengh)
 {
-    int colors[3]= {0x808080FF, 0xFF0000FF, 0x0000FFFF};
     Organism* piece= Organism_addPieceOn(tabletop, position,
-        Organism_new("Soldiers", PIECE_SIZE, 0) );
-        piece->attrs[PIECE_OWNER]= owner;
-        piece->attrs[PIECE_STRENGH]= 1;
-    Organism_setPhisic(piece, -0.5f, 0.5f, 0.6f, colors[owner]);
+        Organism_new(TYPE_SOLDIER, "Soldiers", owner, PIECE_SIZE, 0) );
+    piece->attrs[PIECE_STRENGH]= strengh;
+    Organism_setPhisic(piece, -0.5f, 0.5f, 0.6f, player_colors[owner]);
     return piece;
 }
 
@@ -45,15 +44,13 @@ void initializePlayers(Game* game)
     int position_p2= Organism_extremCellIdTo( game->tabletop, position_p1 );
 
     Organism* piece= Tabletop_addSoldierOn_ownedBy(
-        game->tabletop, position_p1, 1
+        game->tabletop, position_p1, 1, 24
     );
-    piece->attrs[PIECE_STRENGH]= 24;
-
+    
     piece= Tabletop_addSoldierOn_ownedBy(
-        game->tabletop, position_p2, 2
+        game->tabletop, position_p2, 2, 24
     );
-    piece->attrs[PIECE_STRENGH]= 24;
-        
+
     //initialise all player data socket to 0, a color...
     for (int i = 0; i <= game->nbPlayer; i++)
     {
@@ -69,7 +66,7 @@ int updateScore( Game* game, int playerID )
     for( int iNode= 0 ; iNode < game->tabletop->size ; ++iNode )
     {
         Organism* node= Organism_cell( game->tabletop, iNode );
-        if( node->size > 0 && node->cells[0]->attrs[PIECE_OWNER] == playerID )
+        if( node->size > 0 && node->cells[0]->owner == playerID )
         {
             value+= 1.0f;
         }
@@ -350,9 +347,9 @@ Organism * generateRandomTabletop( Organism * tabletop )
     tabletop->shape= 120.f;
 
     //puts("    Create a first piece    ");
-    Organism* cell= Organism_addCell( tabletop, Organism_new("-", 0, 1) );
+    Organism* cell= Organism_addCell( tabletop, Organism_new(0, "-", 0, 0, 1) );
     cell->color= 0x767680FF;
-
+    
     //puts("    generate random cells    ");
     Organism_cellsAtRandom(tabletop, tabletop->capacity-1, tabletop->cells[0]);
     Organism_cellsAtMinDistance(tabletop, 8.f);

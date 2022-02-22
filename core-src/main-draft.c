@@ -29,10 +29,20 @@ enum Piece_Attributes
     PIECE_SIZE
 };
 
+enum Pieace_type
+{
+    TYPE_UNDEF= 0,
+    TYPE_ZOMBIE,
+    TYPE_HUMAN,
+    TYPE_SIZE
+};
+
 // Intermediate Functions
 //-----------------------
 void generateFixedTabletop(Organism* tabletop);
 void generateRandomTabletop(Organism* tabletop, int size);
+Organism* Piece_newZombie(){ return Organism_new(TYPE_ZOMBIE, "Zombie", 0, PIECE_SIZE, 0); }
+Organism* Piece_newHuman(){ return Organism_new(TYPE_HUMAN, "Humans", 1, PIECE_SIZE, 0); }
 
 int main(int nbArg, char ** arg)
 {
@@ -46,23 +56,23 @@ int main(int nbArg, char ** arg)
     // Game Initialization
     //--------------------
     puts("Create the tabletop");
-    Organism* tabletop= Organism_new("Tabletop", 0, 1);
+    Organism* tabletop= Organism_newBasic("Tabletop");
     tabletop->shape= 40.f;
 
-    //generateRandomTabletop(tabletop, 24);
-    generateFixedTabletop(tabletop);
+    generateRandomTabletop(tabletop, 24);
+    //generateFixedTabletop(tabletop);
 
     puts("Prints tabletops");
     Organism_print(tabletop);
 
     puts("Add somme pieces");
-    Organism* piece= Organism_addPieceOn(tabletop, 0, Organism_new("Humans", PIECE_SIZE, 0) );
+    Organism* piece= Organism_addPieceOn(tabletop, 0, Piece_newHuman() );
     piece->attrs[PIECE_HIDDEN]= 42;
     piece->attrs[PIECE_STRENGH]= 24;
     piece->attrs[PIECE_GO]= 108;
 
     Organism_setPhisic(piece, -0.5f, 0.5f, 0.4f, 0xFF0000FF);
-    piece= Organism_addPieceOn(tabletop, 1, Organism_new("Zombies", PIECE_SIZE, 0) );
+    piece= Organism_addPieceOn(tabletop, 1, Piece_newZombie() );
     Organism_setPhisic(piece, -0.5f, 0.5f, 0.4f, 0x0000FFFF);
     piece->attrs[PIECE_HIDDEN]= 69;
     piece->attrs[PIECE_STRENGH]= 12;
@@ -105,13 +115,13 @@ int main(int nbArg, char ** arg)
 void generateRandomTabletop(Organism* tabletop, int size)
 {
     Organism_destroy( tabletop );
-    Organism_construct(tabletop, "Tabletop", 0, size);
+    Organism_construct(tabletop, 0, "Tabletop", 0, 0, size, 0.f, 0.f);
 
-    //puts("    Create a first piece    ");
-    Organism* cell= Organism_addCell( tabletop, Organism_new("-", 0, 1) );
+    //puts("    Create a first cell    ");
+    Organism* cell= Organism_addCell( tabletop, Organism_newPosition( "Cell", -18.f,  0.f) );
     cell->color= 0x767680FF;
 
-    //puts("    generate random cells    ");
+    //puts("    generate random cells as a copy of the first one   ");
     Organism_cellsAtRandom(tabletop, size, tabletop->cells[0]);
     Organism_cellsAtMinDistance(tabletop, 4.f);
     Organism_nameCells(tabletop, "Cell");
@@ -123,22 +133,21 @@ void generateRandomTabletop(Organism* tabletop, int size)
 void generateFixedTabletop(Organism* tabletop)
 {
     Organism_destroy( tabletop );
-    Organism_construct(tabletop, "Tabletop12", 0, 12);
-    Organism_addCell( tabletop, Organism_newPosition("Cell-00", 0, 1, -18.f,  0.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-01", 0, 1,  18.f,  0.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-02", 0, 1, -12.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-03", 0, 1,  12.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-04", 0, 1, -12.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-05", 0, 1,  12.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-06", 0, 1, -6.f, 12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-07", 0, 1,  6.f, 12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-08", 0, 1, -6.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-09", 0, 1,   6.f, -6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-10", 0, 1,   0.f,  6.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-11", 0, 1,   0.f, 00.f) );
-
-    Organism_addCell( tabletop, Organism_newPosition("Cell-12", 0, 1,   -20.f, -12.f) );
-    Organism_addCell( tabletop, Organism_newPosition("Cell-13", 0, 1,   20.f, -12.f) );
+    Organism_construct(tabletop, 0, "Tabletop", 0, 0, 14, 0.f, 0.f);
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-00", -18.f,  0.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-01", 18.f,  0.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-02", -12.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-03", 12.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-04", -12.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-05", 12.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-06", -6.f, 12.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-07", 6.f, 12.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-08", -6.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-09", 6.f, -6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-10", 0.f,  6.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-11", 0.f, 00.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-12", -20.f, -12.f) );
+    Organism_addCell( tabletop, Organism_newPosition( "Cell-13", 20.f, -12.f) );
 
     Organism_biconnect(tabletop, 0, 2);
     Organism_biconnect(tabletop, 0, 4);

@@ -21,15 +21,15 @@
 //--   Constructor / Destructor    --//
 //-----------------------------------//
 
-void Organism_construct(Organism* self, int type, char* name, int owner, int attrs_size, int capacity)
+void Organism_construct(Organism* self, int type, char* name, int owner, int attrs_size, float x, float y, int capacity)
 {
     self->type= type;
     self->name= malloc( sizeof(char)*(strlen(name)+2) );
     self->owner= owner;
     strcpy( self->name, name );
     self->color=  0x808080FF;;
-    self->position.x =0.f;
-    self->position.y =0.f;
+    self->position.x= x;
+    self->position.y= y;
     self->shape= 1.f;
     
     // Attributs:
@@ -61,7 +61,7 @@ void Organism_constructAs(Organism* self, Organism* model)
     strcpy( self->name, model->name );
     self->owner= model->owner;
     self->color= model->color;
-    self->position=  model->position;
+    self->position= model->position;
     self->shape= model->shape;
     
     // Attributs:
@@ -91,25 +91,23 @@ void Organism_constructAs(Organism* self, Organism* model)
     }
 }
 
-Organism * Organism_new(char* name, int attrs_size, int capacity)
+Organism * Organism_new(int type, char* name, int owner, int attrs_size, int capacity)
 {
     Organism * self= malloc( sizeof(Organism) );
-    Organism_construct(self, name, attrs_size, capacity);
+    Organism_construct(self, type, name, owner, attrs_size, capacity, 0.f, 0.f);
     return self;
 }
 
-
-Organism * Organism_newPosition(char* name, int attrs_size, int capacity, float x, float y)
+Organism * Organism_newBasic(char* name)
 {
-    Organism * self= Organism_new(name, attrs_size, capacity);
-    self->position.x= x;
-    self->position.y= y;
-    return self;
+    return Organism_new(0, name, 0, 1, 0);
 }
 
-Organism * Organism_newBasic()
+Organism* Organism_newPosition(char* name, float x, float y)
 {
-    return Organism_new("aOrganism", 0, 1);
+    Organism * self= malloc( sizeof(Organism) );
+    Organism_construct(self, 0, name, 0, 0, 0, x, y);
+    return self;
 }
 
 Organism * Organism_newAs(Organism* model)

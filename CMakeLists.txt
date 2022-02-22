@@ -53,16 +53,24 @@ target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS})
 add_executable(hg-zplay core-src/main-zplay.c)
 target_link_libraries(hg-zplay hackagames ${DPD_IHM_LIBS} -lczmq -lzmq)
 
-# Game NavGraph :
-##set(NAVGRAPH_SRC
-##    games/navgraph/src/main-navgraph.c)
 
-##add_executable(navgraph ${NAVGRAPH_SRC})
-##target_link_libraries(navgraph HackaGames ${DPD_LIBS})
+#-------------#
+## G A M E S ##
+#-------------#
+if(GAMES)
 
-# Risky-Game :
-set(RISKY_SRCS
-    games/risky/src/risky.c)
-add_executable(hg-risky
-    games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
-target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})
+    # Game NavGraph :
+    ##set(NAVGRAPH_SRC
+    ##    games/navgraph/src/main-navgraph.c)
+
+    ##add_executable(navgraph ${NAVGRAPH_SRC})
+    ##target_link_libraries(navgraph HackaGames ${DPD_LIBS})
+
+    # Risky-Game :
+    set(RISKY_SRCS
+        games/risky/src/risky.c)
+    add_executable(hg-risky
+        games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
+    target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})
+
+endif()

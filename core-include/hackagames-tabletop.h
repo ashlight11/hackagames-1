@@ -38,7 +38,7 @@ typedef struct Str_Organism Organism;
  * @param     self an empty Organism not yet constructed.
  * @return    The pointer to the new Tabletop.
  */
-void Organism_construct(Organism * self,  int type, char* name, int owner, int attrs_size, int capacity);
+void Organism_construct(Organism * self,  int type, char* name, int owner, int attrs_size, float x, float y, int capacity);
 void Organism_constructAs(Organism* self, Organism* model);
 
 /**  NEW
@@ -46,10 +46,11 @@ void Organism_constructAs(Organism* self, Organism* model);
  * @brief     Allocate the memory to store a Node
  * @return    The pointer to the new Tabletop.
  */
-Organism* Organism_new(char* name, int attrs_size, int capacity);
-Organism * Organism_newPosition(char* name, int attrs_size, int capacity, float x, float y);
+Organism * Organism_new(int type, char* name, int owner, int attrs_size, int capacity);
 Organism* Organism_newAs(Organism* model);
-Organism* Organism_newBasic(); // a new cell: one attribut and 1 capacity of cells 
+Organism* Organism_newBasic(char* name); // a new cell: one attribut and 1 capacity of cells
+Organism* Organism_newPosition(char* name, float x, float y);
+
 
 /**  DISTROY
  * 
