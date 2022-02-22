@@ -22,8 +22,10 @@
 enum Piece_Attributes
 {
     PIECE_ACTIVED= 0,
+    PIECE_TYPE,
     PIECE_HIDDEN,
     PIECE_STRENGH,
+    PIECE_GO,
     PIECE_SIZE
 };
 
@@ -56,16 +58,20 @@ int main(int nbArg, char ** arg)
     puts("Add somme pieces");
     Organism* piece= Organism_addPieceOn(tabletop, 0, Organism_new("Humans", PIECE_SIZE, 0) );
     piece->attrs[PIECE_HIDDEN]= 42;
+    piece->attrs[PIECE_STRENGH]= 24;
+    piece->attrs[PIECE_GO]= 108;
 
     Organism_setPhisic(piece, -0.5f, 0.5f, 0.4f, 0xFF0000FF);
     piece= Organism_addPieceOn(tabletop, 1, Organism_new("Zombies", PIECE_SIZE, 0) );
     Organism_setPhisic(piece, -0.5f, 0.5f, 0.4f, 0x0000FFFF);
     piece->attrs[PIECE_HIDDEN]= 69;
+    piece->attrs[PIECE_STRENGH]= 12;
+    piece->attrs[PIECE_GO]= 1;
 
     puts("Start the interface");
     Interface* frame= Interface_new(tabletop, 1200, 800, 24.f);
-    int ihmMask[2]= {PIECE_ACTIVED, PIECE_STRENGH};
-    Interface_setAttributMask_ofSize(frame, ihmMask, 2);
+    int ihmMask[3]= {PIECE_ACTIVED, PIECE_STRENGH, PIECE_GO};
+    Interface_setAttributMask_ofSize(frame, ihmMask, 3);
     Interface_startIHM( frame );
 
     // Main game loop

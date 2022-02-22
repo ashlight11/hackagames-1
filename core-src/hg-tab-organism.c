@@ -21,9 +21,11 @@
 //--   Constructor / Destructor    --//
 //-----------------------------------//
 
-void Organism_construct(Organism* self, char* name, int attrs_size, int capacity)
+void Organism_construct(Organism* self, int type, char* name, int owner, int attrs_size, int capacity)
 {
+    self->type= type;
     self->name= malloc( sizeof(char)*(strlen(name)+2) );
+    self->owner= owner;
     strcpy( self->name, name );
     self->color=  0x808080FF;;
     self->position.x =0.f;
@@ -54,8 +56,10 @@ void Organism_construct(Organism* self, char* name, int attrs_size, int capacity
 
 void Organism_constructAs(Organism* self, Organism* model)
 {
+    self->type= model->type;
     self->name= malloc( sizeof(char)*(strlen(model->name)+2) );
     strcpy( self->name, model->name );
+    self->owner= model->owner;
     self->color= model->color;
     self->position=  model->position;
     self->shape= model->shape;

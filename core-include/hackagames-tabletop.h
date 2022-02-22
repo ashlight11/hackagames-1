@@ -2,8 +2,10 @@
 #define HACKAGAMES_ORGANISM_H
 
 struct Str_Organism {
-    char* name; //! a name to the cell
-    unsigned int color; //! color of the cell
+    int type; //! a type id
+    char* name; //! a name to the organism
+    int owner; //player owner of the organism
+    unsigned int color; //! color in format 0xRRGGBBAA
     Float2 position;
     float shape;
     //Polygon* shape;
@@ -36,7 +38,7 @@ typedef struct Str_Organism Organism;
  * @param     self an empty Organism not yet constructed.
  * @return    The pointer to the new Tabletop.
  */
-void Organism_construct(Organism * self, char* name, int attrs_size, int capacity);
+void Organism_construct(Organism * self,  int type, char* name, int owner, int attrs_size, int capacity);
 void Organism_constructAs(Organism* self, Organism* model);
 
 /**  NEW

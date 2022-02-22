@@ -48,25 +48,24 @@ class Interface():
         if( input[0] == "Info:" ):
             print( "- ", " ".join( input ) )
             return self.stLoop
-        if( input[0] == "End:" ):
+        elif( input[0] == "End:" ):
             self.player.sleep( int(input[1]) )
             return self.stWakeUp
-        if( input[0] == "Player:" ):
+        elif( input[0] == "Player:" ):
             self.playerId= int(input[1])
             self.score= [ float(val) for val in input[3:] ]
             return self.stLoop
-        if( input[0] == "Game:" ):
+        elif( input[0] == "Game:" ):
             self.horizon= int(input[1])
             self.pieces= []
             self.size= int(input[2])
             return self.stLoop
-        if( input[0] == "Miniature:" ):
-            p= [ int(attribut) for attribut in input[1:3] + input[6:] ]
-            self.pieces.append( p )
+        elif( input[0] == "Piece:" ):
+            self.pieces.append( input[1:] )
             if self.size == len(self.pieces) :
                 self.player.perceive(self.horizon, self.playerId, self.pieces, self.score )
                 return self.stLoop
-        if input[0] == "Your-turn:" :
+        elif input[0] == "Your-turn:" :
             action= self.player.decide()
             self.sock.send( str.encode(action) )
         return self.stLoop

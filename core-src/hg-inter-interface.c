@@ -286,7 +286,8 @@ void Interface_drawPiece(Interface * self, Float2 position, Organism * minion)
             strcat( attributes_str, buffer );
         }
     }
-    DrawText( attributes_str, B.x+1, B.y+1, 16, BLACK);
+    DrawRectangle(B.x+4, B.y, 4+8*strlen(attributes_str), 16, WHITE);
+    DrawText( attributes_str, B.x+6, B.y, 16, BLACK);
 }
 
 Vector2 Interface_pixelFromPosition(Interface * self, Float2 p)

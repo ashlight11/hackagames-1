@@ -311,7 +311,7 @@ void Game_sendGameTo( Game* self, int playerID )
         {
             // report the miniature elements.
             Organism* minion=  Organism_cell( cell, iMinion );
-            sprintf( mesage, "Miniature: %d", iNode );
+            sprintf( mesage, "Piece: %d ", iNode );
             Organism_attributsStr( minion, buffer );
             strcat(mesage, buffer);
             strcat(mesage, "\n");
