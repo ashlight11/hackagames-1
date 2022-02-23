@@ -267,7 +267,6 @@ char* Organism_attributsStr( Organism * self, char* str )
 
 void Organism_attributsFromStr( Organism * self, char* str )
 {
-    assert(false); // Function to check
     int bound= strlen(str)+1;
     char buffer[ bound ];
     int attributs[ bound ];
