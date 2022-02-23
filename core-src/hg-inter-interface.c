@@ -27,6 +27,11 @@
 
 void Interface_construct(Interface * self, Organism* tabletop, int frameWidth, int frameHeight, float scale)
 {
+    int name_size= max( strlen(tabletop->name)+16, 32 );
+    self->name= malloc( sizeof(char)*name_size );
+    self->name[0]= '\0';
+    self->name[31]= '\0';
+    strcpy( self->name, tabletop->name );
     self->camera.x= 0.f;
     self->camera.y= 0.f;
     self->frameWidth= frameWidth;

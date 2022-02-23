@@ -3,15 +3,17 @@
 
 struct Str_Organism {
     int type; //! a type id
-    char* name; //! a name to the organism
     int owner; //player owner of the organism
+    
+    // Attributs: (Card)
     unsigned int color; //! color in format 0xRRGGBBAA
     Float2 position;
     float shape;
     //Polygon* shape;
     //Dop4* box;
     
-    // Attributs:
+    // Attributs: (Card)
+    char* name;
     int attrs_size;
     int * attrs;
     

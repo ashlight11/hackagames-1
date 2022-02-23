@@ -7,6 +7,7 @@
 #include <pthread.h>
 
 struct Str_Interface {
+    char* name;
     Float2 camera, screenCenter;
     int frameWidth, frameHeight;
     float scale; // pixel per meter

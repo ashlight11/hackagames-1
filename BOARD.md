@@ -1,5 +1,7 @@
 # BOARD of the project
 
+- Action as Card(txt, attributes, values).
+- Better definition of Organisme: Body(position, shape, texture) - Card(txt, attributes, values).
 - Need a clean destruction if one of the player disconect.
 - `hackagame-server` based on [mosquitto](https://mosquitto.org/) or [zeromq](http://czmq.zeromq.org/) ?
    * `hg-draft` - `hg-talk` - `hg-play`.
