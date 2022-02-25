@@ -6,16 +6,20 @@ def main():
 
 class Piece() :
     def __init__(self, position, type, name, owner=0, attributs=[]):
-        self.type= type
+        self.type= int(type)
         self.name= name
-        self.owner= owner
+        self.owner= int(owner)
         self.position= int(position)
         self.attributs= [int(x) for x in attributs]
 
+    def copie(self):
+        return Piece( self.position, self.type, self.name, self.owner. self.attributs )
+    
     def __str__(self):
         return f'player-{self.owner}: {self.type} {self.name} on {self.position} {self.attributs}'
 
 class Player() :
+    # Actor interface :
     def wakeUp(self, tabletop):
         self.world= tabletop
         print( "Tabletop:"),
@@ -24,6 +28,8 @@ class Player() :
     
     def perceive(self, horizon, playerId, pieces, scores):
         print( "game state:", horizon, playerId)
+        self.horizon= horizon
+        self.id= playerId
         self.pieces= [ Piece(tab[0], tab[1], tab[2], tab[3], tab[6:] ) for tab in pieces ]
         print( 'Pieces:', ',\n\t'.join([ str(p) for p in self.pieces ]) )
         print( 'score:', scores)

@@ -1,46 +1,16 @@
 #ifndef HACKAGAMES_ORGANISM_H
 #define HACKAGAMES_ORGANISM_H
 
-/* *************************************** *
- *                 Card                    *
- * *************************************** */
-struct Str_Card {
-    char* txt;
-    int attrs_size;
-    int * attrs;
-    //int value_size;
-    //float * value;
-};
-typedef struct Str_Card Card;
-
-/* *************************************** *
- *                 Body                    *
- * *************************************** */
-struct Str_Body {
-    Float2 position;
-    float shape;
-    //Polygon* shape;
-    unsigned int color; //! color in format 0xRRGGBBAA
-    //Dop4* box;
-    //texture;
-};
-typedef struct Str_Body Body;
-
-/* *************************************** *
- *               Organism                  *
- * *************************************** */
-
 struct Str_Organism {
     int type; //! a type id
     int owner; //player owner of the organism
     
-    // Phisic: (Body)
+    // Body: (Shape)
     unsigned int color; //! color in format 0xRRGGBBAA
     Float2 position;
     float shape;
     //Polygon* shape;
     //Dop4* box;
-    //texture;
     
     // Attributs: (Card)
     char* name;
@@ -49,7 +19,7 @@ struct Str_Organism {
     
     // Contents:
     int capacity, size; // capacity of pieces and effective number of pieces.
-    struct Str_Organism ** cells; // positions on a tabletop or pieces at a position.
+    struct Str_Organism ** cells; // pieces at this position.
     
     // Connectivity:
     int** links;
