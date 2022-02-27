@@ -1,7 +1,15 @@
 #!/bin/bash
 
 # Update include files in dpd:
-cp ../core-include/* ../dpd/include
+if [ ! -d "dpd" ];then
+mkdir dpd
+fi
+cd dpd
+if [ ! -d "dpd" ];then
+mkdir include
+fi
+cp ../core-include/* ./include
+cd ..
 
 # build
 if [ ! -d "build" ];then
@@ -16,5 +24,5 @@ make
 cp libhackagames.so ../dpd
 cp libhackagames-interface.so ../dpd
 
-# Risky
+# Games
 cp hg-risky ../games/risky

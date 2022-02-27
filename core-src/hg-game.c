@@ -104,7 +104,7 @@ void Game_startServeur(Game* self)
         perror("bind failed");
         exit(EXIT_FAILURE);
     }
-    printf("Toghap waiting on port %d \n", self->port);
+    printf("HackaGames waiting on port %d \n", self->port);
 
     //try to specify maximum of 3 pending connections for the master socket 
     if (listen( self->sockets[0], 3 ) < 0)  
@@ -168,7 +168,7 @@ void Game_waitOnPlayer( Game * self )
             }
             
             //send new connection greeting message
-            char *message = "Info: Welcome on TOGHAP\n";
+            char *message = "Info: Welcome on HackaGames\n";
             if( send(new_socket, message, strlen(message), 0) != (ssize_t)strlen(message) )
             {
                 perror("send of welcom mesage");

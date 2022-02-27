@@ -4,9 +4,9 @@
 *.log
 
 # Directory:
-build
-raylib
-dpd
+build/
+raylib/
+dpd/
 __pycache__
 
 # Generated files:
