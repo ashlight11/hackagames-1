@@ -14,8 +14,7 @@
 #include <string.h>
 #include <time.h>
 
-#include "hackagames-geometry.h"
-#include "hackagames-tabletop.h"
+#include "hackagames.h"
 
 //-----------------------------------//
 //--   Constructor / Destructor    --//
