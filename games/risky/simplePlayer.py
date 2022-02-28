@@ -1,17 +1,16 @@
 #!env python3
-import pyhackagames.player as hgplayer
-import pyhackagames.client as hgclient
+import hackagames as hg
 import random
 
 STRENGH= 0
 ACTIVATED= 1
 
 def main():
-    hgclient.takeASeat('localhost', 14001, Player() )
+    hg.takeASeat('localhost', 14001, Player() )
 
-class Player(hgplayer.Player) :
+class Player(hg.VerboseAI) :
 
-    # Actor interface :
+    # AI Interface :
     def decide(self):
         actions= [ ['sleep'] ]
         for piece in self.pieces :
@@ -28,7 +27,7 @@ class Player(hgplayer.Player) :
         actions= []
         if aPiece.owner == playerid and aPiece.attributs[ACTIVATED] == 0 :
             actions.append( ['grow', aPiece.position] )
-            for edge in self.world[ aPiece.position ] :
+            for edge in self.tabletop[ aPiece.position ] :
                 actions.append( ['move', aPiece.position, edge, aPiece.attributs[STRENGH] ] )
         return actions
 
