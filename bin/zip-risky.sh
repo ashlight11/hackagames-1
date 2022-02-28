@@ -9,5 +9,6 @@ fi
 cp -r games/risky/* risky
 rm risky/dpd
 cp -r dpd risky/dpd
+cp -r LICENCE.md risky
 zip -r hackagames-risky.zip risky
 rm -fr risky
