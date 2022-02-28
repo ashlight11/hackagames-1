@@ -1,4 +1,4 @@
-project(HACKAGAME LANGUAGES C)
+project(HACKAGAMES LANGUAGES C)
 cmake_minimum_required(VERSION 3.10)
 
 # Activate C99 standard:
@@ -19,7 +19,7 @@ include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/core-include ${P
 link_directories( ${PROJECT_SOURCE_DIR}/dpd )
 set(DPD_IHM_LIBS raylib pthread dl rt X11 m)
 
-# Toghap and Toghap-player libs :
+# HackaGames libs :
 set(SRC_FILES
     core-src/hg-geometry.c
     core-src/hg-organism.c
@@ -62,9 +62,9 @@ if(GAMES)
 
     # Risky-Game :
     set(RISKY_SRCS
+        games/risky/src/main-risky.c
         games/risky/src/risky.c)
-    add_executable(hg-risky
-        games/risky/src/main-easy.c games/risky/src/risky.c ${RISKY_SRCS})
+    add_executable(hg-risky ${RISKY_SRCS})
     target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})
 
 endif()

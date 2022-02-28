@@ -20,25 +20,23 @@ int fight( Organism* target, int strengh )
 
 int main(int nbArg, char ** arg)
 {
-    int nbTurn= NUM_TURN;
-    if( nbArg > 1 )
-        nbTurn= atoi( arg[1] );
-
     int nbGame= 1;
+    if( nbArg > 1 )
+        nbGame= atoi( arg[1] );
+    
+    int nbTurn= NUM_TURN;
     if( nbArg > 2 )
-        nbGame= atoi( arg[2] );
+        nbTurn= atoi( arg[2] );
+
+    int seed= time(NULL);
+    if( nbArg > 3 )
+        seed= atoi( arg[3] );
 
     int mapSeed= time(NULL);
-    if( nbArg > 3 )
-        mapSeed= atoi( arg[3] );
-
-    int fightSeed= time(NULL);
     if( nbArg > 4 )
-        fightSeed= atoi( arg[4] );
+        mapSeed= atoi( arg[4] );
     
-    printf(
-        "\n------------------\nHackaGames Risky (game seed: %d - %d)\n------------------\n",
-        mapSeed, fightSeed);
+    printf( "\n------------------\nHackaGames Risky (game seed: %d)\n------------------\n", seed);
 
     // Game Initialization
     //--------------------
@@ -63,7 +61,7 @@ int main(int nbArg, char ** arg)
     {
         srand( mapSeed );
         resetGame(game);
-        srand( fightSeed );
+        srand( seed );
         riskyLoop(game, nbTurn, NUM_ACTION_PER_TURN );
         
         printf("score: %d(%f), %d(%f)\n",
@@ -73,14 +71,14 @@ int main(int nbArg, char ** arg)
         if( iGame % 2 == 1)
         {
             mapSeed+= 1;
-            fightSeed+= 1;
+            seed+= 1;
         }
         else
         {
             game_switchPlayers(game);
         }
     }
-
+    
     // Stop IHM
     //-----------
     Interface_stopIHM( view );

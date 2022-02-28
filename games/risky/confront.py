@@ -1,21 +1,31 @@
 #!env python3
 import os, time, re
-import pyrisky.client as risky
+import hackagames as hg
 from simplePlayer import Player
 
+GAMES= 2
+SEED= 123
+
 # Start the server:
-os.system( "./risky-easy 30 100 123 > serveur.log &" )
+cmd= "./hg-risky "+ str(GAMES) +' '+ str(SEED) +"> risky-"+str(SEED)+".log &"
+print("Start the game:", cmd)
+os.system(cmd)
 time.sleep(0.5)
 
 # Player-1:
-os.system( "python3 risky/simplePlayer.py > player-1.log &" )
+cmd= "python3 simplePlayer.py > oponent.log &"
+print("seat the oponent:", cmd)
+os.system(cmd)
 time.sleep(0.5)
 
 # Player-2:
 # os.system( "python3 simplePlayer.py > player-2.log" )
-risky.takeASeat( 'localhost', 2014, Player(12) )
+print("seat our own IA:")
+hg.takeASeat( 'localhost', 14001, Player() )
 
-resultFile= open('serveur.log')
+# Lets annalyse the games:
+
+resultFile= open("risky-"+str(SEED)+".log")
 
 pattern= re.compile( 'score: ([\d]+)\(([\d]+\.[\d]+)\), ([\d]+)\(([\d]+\.[\d]+)\)' )
 

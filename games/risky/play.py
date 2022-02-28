@@ -1,9 +1,8 @@
 #!env python3
-import os, time, random
-import pyrisky.client as risky
+import os, time
 
 # Start the server:
-os.system( "./risky > risky.log &" )
+os.system( "./hg-risky > hg-risky.log &" )
 time.sleep(0.5)
 
 # Create an oponent:
