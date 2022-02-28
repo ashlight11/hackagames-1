@@ -4,35 +4,52 @@ Risky is a strategic turn-based game where two army fights for a territory.
 
 ## Installation
 
-We assume that HackaGames is correctly compiled, and that the command `risky-easy` was generated.
+**Risky** (as **HackaGames**) is natively developed on and for Linux systems.
+Commands are given regarding Ubuntu-like distribution.
 
-cf. [HackaGames README file](../README.fr)
+Download and unzip the game archive (on Linux machines):
 
-Well, there is nothing to do here...
+- [hackagames-risky.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/hackagames-risky.zip)
+
+The archive come with generated binaries, but you can re-build the game using classical `cmake` pipeline:
+
+```sh
+mkdir build
+cd build
+cmake ..
+make
+cp hg-risky ..
+```
 
 ## Try the game:
 
-Togap game work as a server and the player has to connect to play the games.
+**HackaGames** game work as a server and the player has to connect to play the games.
 
-For risky in a first terminal, start the server: 
+### Simple start
 
-```bash
-./hg-risky
+The `play.py` script launch a risky game server with a simple AI and and allow a human player to play as the second player with `telnet` program.
+
+In a terminal:
+
+```sh
+./play.py
 ```
 
-Then 2 players as to reach the games on port 2014, so in two different terminals:
+Each player can perform one and only one action at it turns.
 
-```bash
-telnet localhost 2014
-```
+- moving: `move X Y STRENGH` to move `STRENGH` units from cell `X` to cell `Y`
+- growing: `grow X` to grow the army on nodes `X`
+- sleeping: `sleep` that reset the action counter to $0$ for all the armies (each army need to sleep between 2 move or grow actions).
 
-Then the game begin.
-Each player will receive a description of the world tabletop the nodes (or cells) and the possible movement modeled as edges.
+### Game rules
 
-At its turn each player gets a state of the game:
+At the begining of the game, each player receives a description of the tabletop, the cells and the edges connection.
+The edges model the posible movements.
+
+At its turn, each player gets a state of the game:
 - player: the player configuration (its player id (1 or 2) the number of players (2) the current scores for player-1 and player-2 )
-- Game: the number of turns before the end of the game and the number of miniatures (i.e. army) on the tabletop.
-- Miniature: one at a time of the list of miniatures. The position node, the player owner, a type (always humans here) a list of 2 attributes (number of performed actions and strength).
+- Game: the number of turns before the end of the game and the number of pieces (i.e. armies) on the tabletop.
+- Pieces: the list of pieces on the tabletop. The position cell, the player owner, a type (always soldier here) a list of 2 attributes (strength and number of performed actions).
 After what the game would expect a decision.
 
 Each player can perform one and only one action at it turns.
@@ -43,40 +60,44 @@ Each player can perform one and only one action at it turns.
 
 To notice that:
 
-- A miniature can perform only one action between to sleep.
+- A piece can perform only one action between to sleep.
 - A wrong action request would end on a sleep action.
-- A moving action on an occupied node would merge or fight the targeted node depending on the owner.
-- A fight is always to the death of one of the two armies. 
+- A moving action on an occupied cell would merge or fight the targeted cell depending on the owner.
+- A fight is always to the death of one of the two pieces. 
+
+
+### Manual start
+
+First start `risky` server in a first terminal: 
+
+```sh
+./hg-risky
+```
+
+Then 2 players as to reach the games on port 14001, so in two different terminals:
+
+For human player:
+
+```sh
+telnet localhost 2014
+```
+
+For AI player (in python in the example):
+
+```sh
+python3 simplePlayer.py
+```
 
 ## Your first AI:
 
-The file `player.py` propose a sleeper AI with the required structure to play `risky`.
+The file `simplePlayer.py` propose a first random AI with the required structure to play `risky`.
 So copy this player and start to implement simple ideas...
 
 ```bash
-cp pyrisky/player.py myAutoPlayer01.py
+cp simplePlayer.py myBeatifullAI.py
 ```
 
-You can try your `player` by modifying the `launch.py` script:
+You can try your *AI* by modifying the `play.py` or `confront.py` scripts:
 
-replace:
-
-```python
-from pyrisky.player import Player
-```
-
-by the appropriate instruction, for instance:
-
-```python
-from myAutoPlayer01.py import myAutoPlayer as Player
-```
-
-And that it's, you can fight your AI, in a terminal:
-
-```bash
-python ./launch.py
-```
-
-To notice that the output of your auto-player would be written in `opoenent.log` file.
-
-
+- `play.py` start a player versus AI game, the output of your AI would be written in `opoenent.log` file.
+- `confront.py` permit tow AIs to play a several games to draw statistics.

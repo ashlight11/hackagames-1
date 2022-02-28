@@ -3,7 +3,7 @@ import os, time, re
 import hackagames as hg
 from simplePlayer import Player
 
-GAMES= 2
+GAMES= 100
 SEED= 123
 
 # Start the server:
