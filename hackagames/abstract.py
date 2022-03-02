@@ -14,8 +14,7 @@ class Player() :
     def sleep(self, result):
         pass
 
-
-class Game() :
+class Engine() :
     # Game engine interface :
     def initialize(self):
         pass
@@ -31,27 +30,7 @@ class Game() :
 
     def step(self):
         pass
-    
-    def start(self, player, numberOfGames=1 ):
-        rewards= [0.0 for i in range(numberOfGames)]
-        for i in range(numberOfGames):
-            self.initialize()
-            rewards[i]= 0.0
-            player.perceive( self.turn(), [rewards[i]], 0, self.state() )
-            while not self.isEnd() :
-                rewards[i]= self.step( player.decide() )
-                player.perceive( self.stateDico(), rewards[i] )
-        return rewards
 
-class GameOnePlayer(Game) :
-    def start(self, player, numberOfGames=1 ):
-        rewards= [0.0 for i in range(numberOfGames)]
-        for i in range(numberOfGames):
-            self.initialize()
-            rewards[i]= 0.0
-            player.wakeUp(1, 0, [])
-            player.perceive( self.turn(), [rewards[i]], 0, self.pieces(0) )
-            while not self.isEnd() :
-                rewards[i]= self.step( player.decide() )
-                player.perceive( self.turn(), [rewards[i]], 0, self.pieces(0) )
-        return rewards
+    def start(self, players, numberOfGames=1):
+        pass
+

@@ -2,40 +2,50 @@
 """
 Script MDP 421 
 """
-import random
+import random, hackagames as hg
 
-class Abstarct :
-    def __init__(self, model):
-        self.model= model
+actions= []
+for a1 in ['keep', 'roll']:
+    for a2 in ['keep', 'roll']:
+        for a3 in ['keep', 'roll']:
+            actions.append( a1+'-'+a2+'-'+a3 )
 
-    def perceive(self, state, reward):
-        self.model.setOnStateDico( state )
+class PlayerRandom(hg.abstract.Player) :
+    def __init__(self):
+        self.results= []
 
-    def action(self):
-        pass
+    # AI interface :
+    def wakeUp(self, numberOfPlayers, playerId, tabletop):
+        self.scores= [ 0 for i in range(numberOfPlayers) ]
+        self.id= playerId
+        self.model= tabletop
 
-class Random(Abstarct) :
-    def __init__(self, model):
-        self.model= model
+    def perceive(self, turn, scores, pieces):
+        self.reward= scores[ self.id ] - self.scores[ self.id ]
+        self.scores= scores
+        self.turn= turn
+        self.dices= pieces
 
-    def perceive(self, perception, reward):
-        self.model.setOnStateDico( perception )
-        print( "Perception: "+ self.model.stateStr() +" with reward : " + str(reward) )
-
-    def action(self):
-        action= random.choice( self.model.allActions() )
-        print( self.model.actionToStr(action) )
+    def decide(self):
+        action= random.choice( actions )
         return action
+    
+    def sleep(self, result):
+        self.results.append(result)
 
-class Human(Abstarct) :
+class PlayerHuman(PlayerRandom) :
 
-    def perceive(self, perception, reward):
-        self.model.setOnStateDico( perception )
-        print( "Perception: "+ self.model.stateStr() +" with reward : " + str(reward) )
+    def wakeUp(self, numberOfPlayers, playerId, tabletop):
+        super().wakeUp(numberOfPlayers, playerId, tabletop)
+        print('New Game...')
 
-    def action(self) :
+    def perceive(self, turn, scores, pieces):
+        super().perceive(turn, scores, pieces)
+        print( f'Dice: {str(self.dices)} Horizon: {self.turn} Reward: {self.reward}' )
+    
+    def decide(self):
         print( "Action ?")
-        actionStr= ""
-        while not self.model.isActionStr( actionStr ) :
-                actionStr= input()
-        return self.model.actionFromStr(actionStr)
+        action= ""
+        while not action in actions :
+                action= input()
+        return action

@@ -35,6 +35,12 @@ class Engine :
 
     def stateDico(self):
         return self.state
+    
+    def turn(self):
+        return self.state["H"]
+
+    def dices(self):
+        return [self.state["D1"],  self.state["D2"],  self.state["D3"]]
 
     def setOnStateDico(self, state):
         self.state= state
@@ -106,6 +112,7 @@ class Engine :
         return { "H":self.state["H"]-1,  "D1":dice[0],  "D2":dice[1],  "D3":dice[2] }
 
     def step(self, action):
+        action= self.actionFromStr(action)
         # Get a random transition
         horizon= self.state["H"]
         self.state= self.randomTransition(action)
@@ -114,3 +121,14 @@ class Engine :
             return self.score( self.state )
         else :
             return 0.0
+
+    def start(self, player, numberOfGames=1 ):
+        scores= [0.0 for i in range(numberOfGames)]
+        for i in range(numberOfGames):
+            self.initialize()
+            player.wakeUp(1, 0, [])
+            player.perceive( self.turn(), [ scores[i] ], self.dices() )
+            while not self.isEnd() :
+                scores[i]= self.step( player.decide() )
+                player.perceive( self.turn(), [ scores[i] ], self.dices() )
+        return scores
