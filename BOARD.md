@@ -1,12 +1,12 @@
 # BOARD of the project
 
-- Clean **RISKY** game as first example (move action) - and a curl script to install the game.
-- telnet -> hg-term hg-xterm.
+- Clean **421** and **RISKY** game as first examples (move action) - with simple process to install the games.
+- `hackagame-server` based on [mosquitto](https://mosquitto.org/) (or [zeromq](http://czmq.zeromq.org/) ?)
+   * `hg-draft` - `hg-talk` - `hg-play`.
 - Action as Card(txt, attributes, values).
 - Better definition of Organisme: Body(position, shape, texture) - Card(txt, attributes, values).
 - Need a clean destruction if one of the player disconect.
-- `hackagame-server` based on [mosquitto](https://mosquitto.org/) or [zeromq](http://czmq.zeromq.org/) ?
-   * `hg-draft` - `hg-talk` - `hg-play`.
+
 - Clean **MORPION** game as second example (the simplest) (pop action)
 - Generate .deb file. [first tuto](https://medium.com/deplink/how-to-create-a-deb-file-tutorial-b56388fc35fd)
 - Raylib basic player
