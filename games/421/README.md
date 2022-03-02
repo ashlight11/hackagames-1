@@ -11,6 +11,12 @@ Download and unzip the game archive (on Linux machines):
 
 - [hackagames-421.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-421.zip)
 
+```sh
+wget https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-421.zip
+unzip hackagames-421.zip
+cd 421
+play.py
+```
 
 ## Try the game:
 
