@@ -79,7 +79,7 @@ void* void_InterfaceLoop(void* void_interface)
 
     // Raylib Initialization
     //----------------------
-    InitWindow(self->frameWidth, self->frameHeight, self->tabletop->name);
+    InitWindow(self->frameWidth, self->frameHeight, self->name);
     SetTargetFPS(60);
     
     while ( self->isReady && !WindowShouldClose() )

@@ -257,12 +257,16 @@ void Game_sendMsgTo( Game* self, char* msg, int playerID )
     }
 }
 
-void Game_sendNetworkTo( Game* self, int playerID )
+void Game_sendWakeUpTo( Game* self, int playerID )
 {
     //send new connection greeting message
     char buffer[64], mesage[1024]= "";
     Organism* ttop= self->tabletop;
-    sprintf(mesage, "Tabletop: %d\n", ttop->size );
+    sprintf(mesage,
+        "Player: %d %d\nTabletop: %d\n",
+        self->nbPlayer, playerID,
+        ttop->size
+    );
     Game_sendMsgTo(self, mesage, playerID);
     for( int i= 0 ; i < ttop->size ; ++i )
     {

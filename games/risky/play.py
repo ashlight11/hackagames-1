@@ -1,12 +1,14 @@
 #!env python3
 import os, time
 
+gameDir= os.path.dirname( os.path.realpath(__file__) )
+
 # Start the server:
-os.system( "./hg-risky > hg-risky.log &" )
+os.system( gameDir+"/hg-risky > hg-risky.log &" )
 time.sleep(0.5)
 
 # Create an oponent:
-os.system( "python3 simplePlayer.py > oponent.log &" )
+os.system( "python3 "+ gameDir +"/simplePlayer.py > oponent.log &" )
 
 # Start the simplest interfast possible:
-os.system( "telnet localhost 2014" )
+os.system( "telnet localhost 14001" )

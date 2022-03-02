@@ -8,7 +8,7 @@ ACTIVATED= 1
 def main():
     hg.takeASeat('localhost', 14001, Player() )
 
-class Player(hg.VerboseAI) :
+class Player(hg.PlayerVerbose) :
 
     # AI Interface :
     def decide(self):

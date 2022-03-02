@@ -80,7 +80,7 @@ void riskyLoop(Game * game, int num_turn, int num_action_per_trun)
 
     // Initialize players:
     for( int player= 1; player <= game->nbPlayer ; ++player )
-        Game_sendNetworkTo( game, player );
+        Game_sendWakeUpTo( game, player );
 
     // And lets go:
     int player= 1;

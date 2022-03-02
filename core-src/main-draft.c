@@ -51,7 +51,7 @@ int main(int nbArg, char ** arg)
         seed= atoi( arg[1] );
     srand( seed );
 
-    printf("\n------------------\nTOGHAP Draft App: Start (random seed: %d)\n------------------\n", seed);
+    printf("\n------------------\nHackaGames Draft App: Start (random seed: %d)\n------------------\n", seed);
 
     // Game Initialization
     //--------------------

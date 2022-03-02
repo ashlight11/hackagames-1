@@ -216,7 +216,7 @@ void Game_stop(Game* self );
 
 // Interactions with player :
 void Game_sendMsgTo( Game* self, char* msg, int playerID );
-void Game_sendNetworkTo( Game* self, int playerID );
+void Game_sendWakeUpTo( Game* self, int playerID );
 void Game_sendGameTo( Game* self, int playerID );
 void Game_sendEndTo( Game* self, int playerID );
 void Game_requestPlayer( Game* self, int playerID, Organism* anAction );
