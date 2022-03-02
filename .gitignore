@@ -15,3 +15,5 @@ libhackagames.so
 
 # Games Exemple:
 games/risky/hg-risky
+games/risky/hg-risky-hidden
+

@@ -11,11 +11,14 @@ SET(CMAKE_C_FLAGS_RELEASE "-Wall")
 # Local dependency:
 include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/dpd/include)
 link_directories( ${PROJECT_SOURCE_DIR}/dpd )
-set(DPD_IHM_LIBS raylib pthread dl rt X11 m)
+set(DPD_IHM_LIBS raylib pthread dl rt X11)
 
 # Risky-Game :
 set(RISKY_SRCS
-    src/main-risky.c
     src/risky.c)
-add_executable(hg-risky ${RISKY_SRCS})
-target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})
+
+add_executable(hg-risky ${RISKY_SRCS} src/main-risky.c)
+target_link_libraries(hg-risky hackagames-interface m ${DPD_IHM_LIBS})
+
+add_executable(hg-risky-hidden ${RISKY_SRCS} src/main-hidden.c)
+target_link_libraries(hg-risky-hidden hackagames m)

@@ -12,9 +12,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "raylib.h"
 #include "hackagames.h"
-#include "hackagames-interface.h"
 
 // Game attributes
 //-----------------

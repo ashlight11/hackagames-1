@@ -8,8 +8,10 @@
 #ifndef HACKAGAMES_H
 #define HACKAGAMES_H
 
-#include "hackagames-geometry.h"
+#include <stdbool.h> 
 #include <netinet/in.h> 
+
+#include "hackagames-geometry.h"
 
 /*******************************************************************************************
  *                                                                                         *

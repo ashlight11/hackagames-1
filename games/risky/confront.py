@@ -6,14 +6,17 @@ from simplePlayer import Player
 GAMES= 100
 SEED= 123
 
+gameDir= os.path.dirname( os.path.realpath(__file__) )
+game_output= "hg-risky-"+str(GAMES)+"x"+str(SEED)+".log"
+
 # Start the server:
-cmd= "./hg-risky "+ str(GAMES) +' '+ str(SEED) +"> risky-"+str(SEED)+".log &"
+cmd= gameDir+"/hg-risky-hidden "+ str(GAMES) +' '+ str(SEED) +"> "+ game_output +" &"
 print("Start the game:", cmd)
 os.system(cmd)
 time.sleep(0.5)
 
 # Player-1:
-cmd= "python3 simplePlayer.py > oponent.log &"
+cmd= "python3 "+ gameDir +"/simplePlayer.py > oponent.log &"
 print("seat the oponent:", cmd)
 os.system(cmd)
 time.sleep(0.5)
@@ -25,7 +28,7 @@ hg.takeASeat( 'localhost', 14001, Player() )
 
 # Lets annalyse the games:
 
-resultFile= open("risky-"+str(SEED)+".log")
+resultFile= open( game_output )
 
 pattern= re.compile( 'score: ([\d]+)\(([\d]+\.[\d]+)\), ([\d]+)\(([\d]+\.[\d]+)\)' )
 

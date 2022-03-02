@@ -47,24 +47,3 @@ target_link_libraries(hg-term hackagames)
 # hg-play ... :
 add_executable(hg-play core-src/main-play.c)
 target_link_libraries(hg-play hackagames ${DPD_IHM_LIBS})
-
-#-------------#
-## G A M E S ##
-#-------------#
-if(GAMES)
-
-    # Game NavGraph :
-    ##set(NAVGRAPH_SRC
-    ##    games/navgraph/src/main-navgraph.c)
-
-    ##add_executable(navgraph ${NAVGRAPH_SRC})
-    ##target_link_libraries(navgraph HackaGames ${DPD_LIBS})
-
-    # Risky-Game :
-    set(RISKY_SRCS
-        games/risky/src/main-risky.c
-        games/risky/src/risky.c)
-    add_executable(hg-risky ${RISKY_SRCS})
-    target_link_libraries(hg-risky hackagames-interface ${DPD_IHM_LIBS})
-
-endif()

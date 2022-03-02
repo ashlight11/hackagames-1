@@ -8,11 +8,9 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "risky.h"
-
-#include "raylib.h"
-#include "hackagames-interface.h"
 
 #define NUM_PLAYER 2
 #define NUM_TURN   30
@@ -51,13 +49,6 @@ int main(int nbArg, char ** arg)
     Game_start( game );
     puts("Game started");
 
-    Interface* view= Interface_new( game->tabletop, 1200, 800, 24.f );
-    int ihmMask[2]= {PIECE_STRENGH, PIECE_ACTIVED};
-    Interface_setAttributMask_ofSize(view, ihmMask, 2);
-    
-    Interface_startIHM( view );
-    puts("IHM started");
-
     // Main game loop
     puts("Starts the games:");
     for( int iGame= 0 ;  iGame < nbGame ; ++iGame )
@@ -84,7 +75,6 @@ int main(int nbArg, char ** arg)
     
     // Stop IHM
     //-----------
-    Interface_stopIHM( view );
     Game_stop( game );
     
     Game_delete( game );

@@ -8,20 +8,6 @@ def takeASeat(host, port, player ):
         itf= client.Interface( sock, player )
         itf.go()
 
-class Piece() :
-    def __init__(self, position, type, name, owner=0, attributs=[]):
-        self.type= int(type)
-        self.name= name
-        self.owner= int(owner)
-        self.position= int(position)
-        self.attributs= [int(x) for x in attributs]
-
-    def copie(self):
-        return Piece( self.position, self.type, self.name, self.owner, self.attributs )
-    
-    def __str__(self):
-        return f'player-{self.owner}: {self.type} {self.name} on {self.position} {self.attributs}'
-
 class Player(abstract.Player) :
     def __init__(self):
         self.results= []
@@ -37,7 +23,7 @@ class Player(abstract.Player) :
         
     def perceive(self, turn, scores, pieces, deltaTabletop):
         self.turn= turn
-        self.pieces= [ Piece(tab[0], tab[1], tab[2], tab[3], tab[6:] ) for tab in pieces ]
+        self.pieces= pieces
         self.scores= scores
 
     def decide(self):

@@ -23,7 +23,7 @@ Game* initializeGame()
 void resetGame(Game* game)
 {
     generateClassicalTabletop( game->tabletop );
-    initializePlayers(game, false);
+    initializePlayers(game, 0);
 }
 
 Organism* Tabletop_addSoldierOn_ownedBy(Organism* tabletop, int position, int owner, int strengh)

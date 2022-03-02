@@ -1,3 +1,4 @@
+from . import game
 
 class Interface():
     def __init__(self, sock, player ):
@@ -13,7 +14,7 @@ class Interface():
         self.state= self.stWakeUp
         while True :
             try:
-                data= self.sock.recv(1024)
+                data= self.sock.recv(4096)
             except:
                 break
             if not data :
@@ -58,7 +59,7 @@ class Interface():
             self.pieces= []
             return self.stLoop
         elif( input[0] == "Piece:" ):
-            self.pieces.append( input[1:] )
+            self.pieces.append( game.Piece( input[1:] ) )
             if self.size == len(self.pieces) :
                 self.player.perceive( self.turn, self.scores, self.pieces )
                 return self.stLoop

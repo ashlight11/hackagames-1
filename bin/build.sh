@@ -17,7 +17,7 @@ mkdir build
 fi
 
 cd build
-cmake -DTEST=ON -DGAMES=ON -DCMAKE_BUILD_TYPE=Debug ..
+cmake -DTEST=ON -DCMAKE_BUILD_TYPE=Debug ..
 make
 
 # Copy librairies:
@@ -25,4 +25,5 @@ cp libhackagames.so ../dpd
 cp libhackagames-interface.so ../dpd
 
 # Games
-cp hg-risky ../games/risky
+cd ..
+bin/risky-build.sh
