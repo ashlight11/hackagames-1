@@ -9,7 +9,7 @@ Commands are given regarding Ubuntu-like distribution.
 
 Download and unzip the game archive (on Linux machines):
 
-- [hackagames-risky.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/hackagames-risky.zip)
+- [hackagames-risky.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-risky.zip)
 
 The archive come with generated binaries, but you can re-build the game using classical `cmake` pipeline:
 
