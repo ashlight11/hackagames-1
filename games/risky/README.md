@@ -11,6 +11,14 @@ Download and unzip the game archive (on Linux machines):
 
 - [hackagames-risky.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-risky.zip)
 
+```sh
+wget https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-risky.zip
+unzip hackagames-risky.zip
+cd risky
+play.py
+```
+
+
 The archive come with generated binaries, but you can re-build the game using classical `cmake` pipeline:
 
 ```sh

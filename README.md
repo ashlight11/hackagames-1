@@ -1,9 +1,6 @@
 # HackaGames - An Hackable Games' Engine
 
-<img 
-  alt="HackaGames logo - An axe on the binary code stream"
-  width="100"
-  src="resources/logo.png" /> 
+![](resources/logo-128.png)
 
 **HackaGames** aims to be a *C* game engine dedicated for the development of Artificial Intelligence (AIs) in any languages.
 The project is based on a multimedia library *RayLib* for rendering and is developed accordingly to [KISS](https://fr.wikipedia.org/wiki/Principe_KISS)  (Keep It Stupid Simple) principle.
