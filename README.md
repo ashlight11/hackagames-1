@@ -1,4 +1,4 @@
-# HackaGames - An Hackable Games' Engine
+# HackaGames v0.1.0 - An Hackable Games' Engine
 
 ![](resources/logo-128.png)
 

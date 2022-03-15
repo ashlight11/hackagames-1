@@ -1,6 +1,6 @@
 #!env python3
 """
-Script MDP 421 
+First 421 player 
 """
 import random, hackagames as hg
 
