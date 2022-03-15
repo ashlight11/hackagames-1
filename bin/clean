@@ -3,17 +3,18 @@
 # at root directory:
 rm *.log
 
-#core:
+#hackagames:
+cd hackagames
 if [ -d "build" ];then
 rm -fr build
 fi
 
-if [ -d "hackagames/__pycache__" ];then
-rm -fr hackagames/__pycache__
+if [ -d "__pycache__" ];then
+rm -fr __pycache__
 fi
 
 #risky:
-cd games/risky
+cd ../game-risky
 
 if [ -d "build" ];then
 rm -fr build
@@ -23,8 +24,11 @@ rm -fr __pycache__
 fi
 
 #421:
-cd ../421
+cd ../game-421
 
+if [ -d "build" ];then
+rm -fr build
+fi
 if [ -d "__pycache__" ];then
 rm -fr __pycache__
 fi

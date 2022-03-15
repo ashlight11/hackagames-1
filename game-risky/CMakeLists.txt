@@ -9,8 +9,13 @@ SET(CMAKE_C_FLAGS_DEBUG "-Wall -Wextra -g")
 SET(CMAKE_C_FLAGS_RELEASE "-Wall")
 
 # Local dependency:
-include_directories(${PROJECT_SOURCE_DIR} ${PROJECT_SOURCE_DIR}/dpd/include)
-link_directories( ${PROJECT_SOURCE_DIR}/dpd )
+include_directories(
+    ${PROJECT_SOURCE_DIR}/src
+    ${PROJECT_SOURCE_DIR}/../dpd/include
+    ${PROJECT_SOURCE_DIR}/../hackagames/src)
+link_directories(
+    ${PROJECT_SOURCE_DIR}/../dpd
+    ${PROJECT_SOURCE_DIR}/../hackagames )
 set(DPD_IHM_LIBS raylib pthread dl rt X11)
 
 # Risky-Game :

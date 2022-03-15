@@ -1,7 +1,7 @@
 #!env python3
 import os, time
 
-gameDir= os.path.dirname( os.path.realpath(__file__) )
+gameDir= os.path.dirname( os.path.realpath(__file__) ) + "/game-risky"
 
 # Start the server:
 os.system( gameDir+"/hg-risky > hg-risky.log &" )

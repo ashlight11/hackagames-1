@@ -1,6 +1,8 @@
 # BOARD of the project
 
-- Clean **421** and **RISKY** game as first examples (move action) - with simple process to install the games.
+- Mise en place d'une master command: hag
+- WakeUp with state information (pieces)
+- Flate repo: `/hackalib`, `game-421`, `game-risky`, ...
 - `hackagame-server` based on [mosquitto](https://mosquitto.org/) (or [zeromq](http://czmq.zeromq.org/) ?)
    * `hg-draft` - `hg-talk` - `hg-play`.
 - Action as Card(txt, attributes, values).

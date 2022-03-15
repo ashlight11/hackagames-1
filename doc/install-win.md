@@ -1,5 +1,12 @@
 # Installation
 
+- First get: Visual-Studio-code
+  - module: python, c++, cmake-tools
+- git-scm, cmake (with PATH modification), 
+
+
+
+
 Projet conçu pour une compilation avec GCC et la librairie Raylib. De par la nature de la procédure d'installation et de linkage, Linux est le système d'exploitation à préférer.
 
 ⚠️ Bien prendre le temps de lire la section d'installation qui vous concerne ⚠️

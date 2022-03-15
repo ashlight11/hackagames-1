@@ -10,10 +10,12 @@ dpd/
 __pycache__
 
 # Generated files:
-libhackagames-interface.so
-libhackagames.so
+hackagames/hg-draft
+hackagames/hg-play
+hackagames/hg-term
+hackagames/libhackagames-interface.so
+hackagames/libhackagames.so
 
 # Games Exemple:
-games/risky/hg-risky
-games/risky/hg-risky-hidden
-
+game-risky/hg-risky
+game-risky/hg-risky-hidden

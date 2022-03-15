@@ -1,6 +1,8 @@
 #!env python3
+import sys, os, random
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
 import hackagames as hg
-import random
 
 STRENGH= 0
 ACTIVATED= 1
