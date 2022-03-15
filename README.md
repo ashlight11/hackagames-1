@@ -32,14 +32,8 @@ Several games are proposed with the API for example
 **HackaGames** is natively developed on and for Linux systems.
 Commands are given regarding Ubuntu-like distribution.
 
-As a first functionality, **HackaGames** is an API for hackable game development.
-If your goal is to develop **HackaGames** game AIs, maybe you can just get the game you wan to break.
-
-Download, unzip and refer to the `README.md` file in the archive (on Linux machines):
-
-- [risky](./hackagames-risky.zip).
-
-Otherwise you can clone this repository (game engine plus games):
+The classical way to get **HackaGames** is to clone then buid the project.
+So first, you can clone this repository (game engine plus games):
 
 ```bash
 git clone git@bitbucket.org:imt-mobisyst/hackagames.git

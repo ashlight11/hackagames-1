@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd games/risky
+cd game-risky
 
 # build
 if [ ! -d "build" ];then
