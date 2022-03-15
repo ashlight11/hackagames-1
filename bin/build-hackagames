@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# build
+cd hackagames
+if [ ! -d "build" ];then
+mkdir build
+fi
+
+cd build
+cmake -DTEST=ON -DCMAKE_BUILD_TYPE=Debug ..
+make
+
+# Copy librairies:
+cp libhackagames* ..
+cp hg-* ..
