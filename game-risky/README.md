@@ -4,29 +4,13 @@ Risky is a strategic turn-based game where two army fights for a territory.
 
 ## Installation
 
-**Risky** (as **HackaGames**) is natively developed on and for Linux systems.
-Commands are given regarding Ubuntu-like distribution.
+**Risky** is part of **HackaGames** project. Please refert to **HackaGames** intallation procedure.
 
-Download and unzip the game archive (on Linux machines):
-
-- [hackagames-risky.zip](https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-risky.zip)
+Then **Risky** can be compiled with `cmake` and `make`:
 
 ```sh
-wget https://bitbucket.org/imt-mobisyst/hackagames/raw/master/release/hackagames-risky.zip
-unzip hackagames-risky.zip
-cd risky
-play.py
-```
-
-
-The archive come with generated binaries, but you can re-build the game using classical `cmake` pipeline:
-
-```sh
-mkdir build
-cd build
-cmake ..
+cmake .
 make
-cp hg-risky ..
 ```
 
 ## Try the game:
@@ -35,7 +19,7 @@ cp hg-risky ..
 
 ### Simple start
 
-The `play.py` script launch a risky game server with a simple AI and and allow a human player to play as the second player with `telnet` program.
+The `play-risky.py` script launch a risky game server with a simple AI and and allow a human player to play as the second player with `telnet` program.
 
 In a terminal:
 
