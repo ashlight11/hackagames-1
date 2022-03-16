@@ -1,9 +1,11 @@
 #!env python3
-import os, time, re
+import sys, os, time, re
+sys.path.insert(1, os.path.join(sys.path[0], '..'))
+
 import hackagames as hg
 from simplePlayer import Player
 
-GAMES= 100
+GAMES= 2
 SEED= 123
 
 gameDir= os.path.dirname( os.path.realpath(__file__) )

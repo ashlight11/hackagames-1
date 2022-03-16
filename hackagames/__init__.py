@@ -21,7 +21,7 @@ class Player(abstract.Player) :
         self.id= playerId
         self.tabletop= tabletop
         
-    def perceive(self, turn, scores, pieces, deltaTabletop):
+    def perceive(self, turn, scores, pieces, tabletop=[]):
         self.turn= turn
         self.pieces= pieces
         self.scores= scores
@@ -39,8 +39,8 @@ class PlayerVerbose(Player):
         for i in range( len(self.tabletop) ):
             print( '  ', str(i), ':\t', str(self.tabletop[i]) )
     
-    def perceive(self, turn, scores, pieces, deltaTabletop=[]):
-        super().perceive(turn, scores, pieces, deltaTabletop)
+    def perceive(self, turn, scores, pieces, tabletop=[]):
+        super().perceive(turn, scores, pieces, tabletop)
         print( f'player-{self.id}" turn: {turn}' )
         print( 'Pieces:', ',\n\t'.join([ str(p) for p in self.pieces ]) )
         print( 'score:', scores)
