@@ -4,7 +4,7 @@ sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 import hackagames as hg
 
-STRENGH= 0
+STRENGTH= 0
 ACTIVATED= 1
 
 def main():
@@ -18,7 +18,7 @@ class Player(hg.PlayerVerbose) :
         for piece in self.pieces :
             actions+= self.actionsFrom(self.id, piece)
         action= random.choice( actions )
-        if( action[0] == 'move' ): #then get a random strengh:
+        if( action[0] == 'move' ): #then get a random strength:
             action[3]= random.randrange( action[3] )
         actstr= ' '.join([str(x) for x in action])
         print( 'action:', actstr )
@@ -30,7 +30,7 @@ class Player(hg.PlayerVerbose) :
         if aPiece.owner == playerid and aPiece.attributs[ACTIVATED] == 0 :
             actions.append( ['grow', aPiece.position] )
             for edge in self.tabletop[ aPiece.position ] :
-                actions.append( ['move', aPiece.position, edge, aPiece.attributs[STRENGH] ] )
+                actions.append( ['move', aPiece.position, edge, aPiece.attributs[STRENGTH] ] )
         return actions
 
 # Activate default interface :
