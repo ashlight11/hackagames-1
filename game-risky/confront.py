@@ -3,9 +3,9 @@ import sys, os, time, re
 sys.path.insert(1, os.path.join(sys.path[0], '..'))
 
 import hackagames as hg
-from myPlayer import Player
+from otherPlayerAI import Player
 
-GAMES= 1
+GAMES= 200
 SEED= 123
 
 gameDir= os.path.dirname( os.path.realpath(__file__) )
@@ -26,10 +26,11 @@ time.sleep(0.5)
 # Player-2:
 # os.system( "python3 simplePlayer.py > player-2.log" )
 
-print("seat our own IA:")
-hg.takeASeat( 'localhost', 14001, Player() ) 
+AI_player = Player()
 
-print("test")
+print("seat our own IA:")
+hg.takeASeat( 'localhost', 14001, AI_player ) 
+
 # Lets annalyse the games:
 
 resultFile= open( game_output )
@@ -91,4 +92,7 @@ print( "Wins:" )
 print( wins )
 
 print( "Winner:", winner )
+
+# print(AI_player.qvalues)
+
 
