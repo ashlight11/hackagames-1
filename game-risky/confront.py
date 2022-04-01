@@ -5,7 +5,7 @@ sys.path.insert(1, os.path.join(sys.path[0], '..'))
 import hackagames as hg
 from otherPlayerAI import Player
 
-GAMES= 200
+GAMES= 100
 SEED= 123
 
 gameDir= os.path.dirname( os.path.realpath(__file__) )
